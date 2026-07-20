@@ -1,0 +1,250 @@
+<section id="home">
+
+
+   <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+
+      <div class="carousel-inner">
+
+
+         {% for hero in heroes %}
+
+
+         <div class="carousel-item 
+            {% if forloop.first %}active{% endif %}">
+
+
+            {% if hero.fondo %}
+
+            <img src="{{ hero.fondo.url }}" class="d-block w-100 hero-img" alt="{{ hero.titulo }}">
+
+            {% endif %}
+
+
+
+            <div class="overlay"></div>
+
+
+
+            <div class="carousel-caption hero-content">
+
+
+               <h1 class="display-3 fw-bold text-white">
+
+                  {{ hero.titulo }}
+
+               </h1>
+
+
+               <p class="lead text-white">
+
+                  {{ hero.subtitulo }}
+
+               </p>
+
+
+
+               {% if hero.boton_texto %}
+
+               <a href="{{ hero.boton_url }}" class="btn btn-primary btn-lg">
+
+                  {{ hero.boton_texto }}
+
+               </a>
+
+               {% endif %}
+
+
+            </div>
+
+
+
+         </div>
+
+
+         {% endfor %}
+
+
+      </div>
+
+
+
+      <!-- BOTÓN ANTERIOR -->
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+
+         <span class="carousel-control-prev-icon"></span>
+
+      </button>
+
+
+
+      <!-- BOTÓN SIGUIENTE -->
+
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+
+         <span class="carousel-control-next-icon"></span>
+
+      </button>
+
+
+
+   </div>
+
+
+</section>
+
+
+<style>
+   /* =========================
+   HERO DESKTOP
+========================= */
+
+   #heroCarousel,
+   #heroCarousel .carousel-item {
+
+      height: 700px;
+
+   }
+
+
+   .hero-img {
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      image-rendering: auto;
+
+   }
+
+
+
+   /* Oscurecer imagen para mejorar texto */
+
+   .overlay {
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+         linear-gradient(rgba(0, 0, 0, .45),
+            rgba(0, 0, 0, .45));
+
+   }
+
+
+
+   /* Texto centrado */
+
+   .hero-content {
+
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+
+   }
+
+
+
+   /* =========================
+   TABLET
+========================= */
+
+
+   @media(max-width:992px) {
+
+
+      #heroCarousel,
+      #heroCarousel .carousel-item {
+
+         height: auto;
+
+      }
+
+
+
+      .hero-img {
+
+
+         width: 100%;
+
+         height: auto;
+
+         object-fit: contain;
+
+
+      }
+
+
+
+      .carousel-caption {
+
+
+         bottom: 50%;
+
+         transform: translateY(50%);
+
+
+      }
+
+
+   }
+
+
+
+   /* =========================
+   CELULAR
+========================= */
+
+
+   @media(max-width:576px) {
+
+
+      #heroCarousel,
+      #heroCarousel .carousel-item {
+
+         height: auto;
+
+      }
+
+
+
+      .hero-img {
+
+         width: 100%;
+
+         height: auto;
+
+         object-fit: contain;
+
+      }
+
+
+
+      .hero-content h1 {
+
+
+         font-size: 1.8rem;
+
+
+      }
+
+
+
+      .hero-content p {
+
+
+         font-size: .95rem;
+
+
+      }
+
+
+
+   }
+</style>

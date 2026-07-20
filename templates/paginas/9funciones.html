@@ -1,0 +1,160 @@
+<section class="funciones-section py-5">
+
+    <div class="container">
+
+
+        <!-- Encabezado -->
+        <div class="section-header text-center mb-5">
+
+            {% for encabezado in pagina.encabezados.all %}
+
+                {% if encabezado.seccion == "funciones" %}
+
+                    <h2 class="fw-bold"> 
+                        {{ encabezado.titulo }}
+                    </h2>
+
+                    <p class="text-muted mx-auto" style="max-width:700px;">
+                        {{ encabezado.descripcion }}
+                    </p>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+
+
+        <div class="row g-4">
+
+
+            {% for funcion in pagina.funciones.all %}
+
+
+            <div class="col-lg-6">
+
+
+                <div class="funcion-card">
+
+
+                    <div class="funcion-icono">
+
+                        <i class="bi {{ funcion.icono }}"></i>
+
+                    </div>
+
+
+
+                    <p>
+                        {{ funcion.funcion }}
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<style>
+
+    .funciones-section{
+
+    background:#f8f9fa;
+
+}
+
+
+
+.funcion-card{
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    background:white;
+
+    padding:25px 30px;
+
+    border-radius:20px;
+
+    border-left:5px solid #198754;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.07);
+
+    transition:.3s ease;
+
+}
+
+
+
+.funcion-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 18px 40px rgba(0,0,0,.12);
+
+}
+
+
+
+.funcion-icono{
+
+    min-width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    background:#198754;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+
+.funcion-icono i{
+
+    font-size:1.5rem;
+
+}
+
+
+
+.funcion-card p{
+
+    margin:0;
+
+    color:#555;
+
+    font-size:1.05rem;
+
+    line-height:1.7;
+
+}
+</style>

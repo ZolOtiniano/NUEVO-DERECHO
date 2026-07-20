@@ -1,0 +1,157 @@
+<section class="objetivos-section py-5 bg-light">
+
+    <div class="container">
+
+
+        <!-- Encabezado -->
+        <div class="section-header text-center mb-5">
+
+            {% for encabezado in pagina.encabezados.all %}
+
+                {% if encabezado.seccion == "objetivos" %}
+
+                    <h2 class="fw-bold">
+                        {{ encabezado.titulo }}
+                    </h2>
+
+                    <p class="text-muted col-lg-7 mx-auto">
+                        {{ encabezado.descripcion }}
+                    </p>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+
+
+        <div class="row g-4">
+
+
+            {% for objetivo in pagina.objetivos.all %}
+
+
+            <div class="col-md-6">
+
+
+                <div class="objetivo-card">
+
+
+                    <div class="objetivo-icono">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <p>
+                            {{ objetivo.descripcion }}
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+<style>
+    .objetivos-section{
+    background:#f8f9fa;
+}
+
+
+
+.objetivo-card{
+
+    height:100%;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s ease;
+
+}
+
+
+
+.objetivo-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+
+
+.objetivo-icono{
+
+    min-width:55px;
+
+    height:55px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#198754;
+
+    color:white;
+
+    border-radius:50%;
+
+}
+
+
+
+.objetivo-icono i{
+
+    font-size:1.8rem;
+
+}
+
+
+
+.objetivo-card p{
+
+    margin:0;
+
+    color:#555;
+
+    font-size:1.05rem;
+
+    line-height:1.7;
+
+}
+</style>

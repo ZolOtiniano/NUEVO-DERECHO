@@ -1,0 +1,144 @@
+<section id="bienvenida" class="py-1">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10">
+
+                <div class="welcome-card text-center">
+
+                    {% if bienvenida.subtitulo %}
+                    <span class="welcome-subtitle">
+                        {{ bienvenida.subtitulo }}
+                    </span>
+                    {% endif %}
+
+                    <h2 class="display-5 fw-bold mt-3">
+
+                        {{ bienvenida.titulo }}
+
+                    </h2>
+
+                    <div class="welcome-divider"></div>
+
+                    <p class="lead text-secondary mt-4">
+
+                        {{ bienvenida.descripcion }}
+
+                    </p>
+
+                    <p class="text-muted fs-5 mt-3 mb-0">
+
+                        {{ bienvenida.mensaje }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+    /*=====================================
+=          Bienvenida                 =
+=====================================*/
+
+    #bienvenida {
+
+        background: #ffffff;
+
+    }
+
+    .welcome-card {
+
+        background: #fff;
+
+        padding: 70px 60px;
+
+        border-radius: 25px;
+
+        box-shadow: 0 15px 45px rgba(0, 0, 0, .08);
+
+        transition: .35s;
+
+    }
+
+    .welcome-card:hover {
+
+        transform: translateY(-6px);
+
+        box-shadow: 0 25px 55px rgba(0, 0, 0, .12);
+
+    }
+
+    .welcome-subtitle {
+
+        color: #2fbb0c;
+
+        font-weight: 700;
+
+        text-transform: uppercase;
+
+        letter-spacing: 3px;
+
+        font-size: .9rem;
+
+    }
+
+    .welcome-divider {
+
+        width: 90px;
+
+        height: 4px;
+
+        background: #21b614;
+
+        margin: 25px auto;
+
+        border-radius: 50px;
+
+    }
+
+    .welcome-card h2 {
+
+        color: #1f2937;
+
+    }
+
+    .welcome-card .lead {
+
+        font-size: 1.35rem;
+
+        line-height: 1.8;
+
+    }
+
+    .welcome-card p:last-child {
+
+        line-height: 1.9;
+
+    }
+
+    @media(max-width:768px) {
+
+        .welcome-card {
+
+            padding: 45px 30px;
+
+        }
+
+        .welcome-card h2 {
+
+            font-size: 2rem;
+
+        }
+
+    }
+</style>

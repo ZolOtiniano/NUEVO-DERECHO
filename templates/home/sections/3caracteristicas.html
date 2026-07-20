@@ -1,0 +1,155 @@
+<section id="caracteristicas" class="py-5 bg-light">
+
+    <div class="container">
+
+        <!-- Título -->
+        <div class="text-center mb-5">
+
+            <span class="text-success fw-semibold text-uppercase">
+                {{ secciones.caracteristicas.subtitulo }}
+            </span>
+
+            <h2 class="display-5 fw-bold mt-2">
+                {{ secciones.caracteristicas.titulo }}
+            </h2>
+
+            <p class="text-muted col-lg-7 mx-auto">
+                {{ secciones.caracteristicas.descripcion }}
+            </p>
+
+        </div>
+
+
+
+        <div class="row g-4 justify-content-center">
+
+            {% for item in caracteristicas %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="feature-card h-100">
+
+                    <div class="feature-icon">
+                        <i class="{{ item.icono }}"></i>
+                    </div>
+
+                    <h4 class="mt-4 fw-bold">
+                        {{ item.titulo }}
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        {{ item.descripcion }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+    /*=====================================
+=            Características          =
+=====================================*/
+
+    #caracteristicas {
+        background: #f8fafc;
+    }
+
+    .feature-card {
+
+        background: #fff;
+
+        border-radius: 20px;
+
+        padding: 45px 30px;
+
+        text-align: center;
+
+        height: 100%;
+
+        transition: .35s ease;
+
+        border: 1px solid #eef2f7;
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, .05);
+
+    }
+
+    .feature-card:hover {
+
+        transform: translateY(-10px);
+
+        box-shadow: 0 20px 45px rgba(0, 0, 0, .12);
+
+        border-color: #2fbb0c;
+
+    }
+
+    .feature-icon {
+
+        width: 90px;
+
+        height: 90px;
+
+        margin: auto;
+
+        border-radius: 50%;
+
+        background: linear-gradient(135deg, #07a014, #4f9dff);
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        color: #fff;
+
+        font-size: 40px;
+
+        transition: .35s;
+
+    }
+
+    .feature-card:hover .feature-icon {
+
+        transform: rotate(10deg) scale(1.08);
+
+    }
+
+    .feature-card h4 {
+
+        font-size: 1.35rem;
+
+        color: #212529;
+
+    }
+
+    .feature-card p {
+
+        line-height: 1.8;
+
+        font-size: .97rem;
+
+    }
+
+    /* Responsive */
+
+    @media(max-width:768px) {
+
+        .feature-card {
+
+            padding: 35px 25px;
+
+        }
+
+    }
+</style>

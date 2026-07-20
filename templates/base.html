@@ -1,0 +1,866 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Monoline - Design Agency HTML Template">
+    <meta name="keywords"
+        content="agency, business, corporate, creative, html5, modern, multipurpose, One Page, parallax, startup ">
+    <!-- SITE TITLE -->
+
+    <title>{% block title %}Facultad de Derecho{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600">
+
+    <STYLE>
+        /* Estilo general */
+
+        .home-section {
+            padding: 20px 0;
+            position: relative;
+        }
+
+
+        .home-section:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 15%;
+            width: 70%;
+            height: 1px;
+            background: linear-gradient(to right,
+                    transparent,
+                    #cccccc,
+                    transparent);
+        }
+
+
+
+
+
+
+
+
+
+
+        /* MENU SE VE AUTOMANTICAMENTE */
+        .dropdown-menu {
+            margin-top: 0;
+        }
+
+        .navbar .dropdown-menu {
+            transition: all .2s ease;
+        }
+
+        .navbar .dropdown-menu {
+            margin-top: -2px;
+        }
+
+
+
+
+
+
+        /* =========================
+        FOOTER
+        ========================= */
+
+        footer {
+            background: #000000;
+        }
+
+        footer h4,
+        footer h5 {
+            color: #fff;
+        }
+
+        footer a {
+            color: #d6d6d6;
+            transition: .3s;
+        }
+
+        footer a:hover {
+            color: #198754;
+            text-decoration: none;
+        }
+
+        footer p,
+        footer li,
+        footer small {
+            color: #cfcfcf;
+            line-height: 1.8;
+        }
+
+        footer hr {
+            opacity: .2;
+        }
+
+
+        /* =========================
+        FOOTER INSTITUCIONAL
+        ========================= */
+        .footer-institucional {
+
+            background: #000000;
+
+        }
+
+
+
+        .footer-institucional h4,
+        .footer-institucional h5 {
+
+            color: #ffffff;
+
+        }
+
+
+
+        .footer-link {
+
+            color: #bdbdbd;
+            text-decoration: none;
+            transition: .3s;
+
+        }
+
+
+        .footer-link:hover {
+
+            color: #198754;
+
+        }
+
+
+
+        .footer-list li {
+
+            color: #bdbdbd;
+            margin-bottom: 18px;
+            line-height: 1.6;
+
+        }
+
+
+
+        .footer-list i {
+
+            color: #198754;
+            margin-right: 8px;
+
+        }
+
+
+
+        .footer-divider {
+
+            border-color: #333;
+            opacity: 1;
+
+        }
+
+
+
+
+
+        /* Redes sociales */
+
+        .social-icon {
+
+            width: 42px;
+            height: 42px;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #111;
+
+            color: white;
+
+            margin-right: 8px;
+
+            font-size: 20px;
+
+            transition: .3s;
+
+        }
+
+
+
+        .social-icon:hover {
+
+            background: #198754;
+
+            transform: translateY(-4px);
+
+        }
+
+
+
+        .footer-neon {
+
+            color: #39ff14;
+
+            text-shadow:
+                0 0 5px #39ff14,
+                0 0 10px #39ff14,
+                0 0 20px #39ff14,
+                0 0 40px #39ff14;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .footer-col {
+            padding-top: 70px;
+        }
+
+
+
+
+
+
+
+
+
+
+
+        /* =========================
+   NAVBAR RESPONSIVE
+========================= */
+
+        .navbar {
+            padding: .5rem 0;
+        }
+
+
+        /* Logo */
+
+        .logo-facultad img {
+            max-height: 55px;
+            width: auto;
+        }
+
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+
+        /* Links */
+
+        .navbar-nav .nav-link {
+
+            font-size: .95rem;
+            font-weight: 600;
+
+            padding: .7rem .9rem;
+
+            border-radius: .5rem;
+
+            transition: .3s;
+
+        }
+
+
+        .navbar-nav .nav-link:hover {
+
+            background: rgba(255, 255, 255, .15);
+
+        }
+
+
+
+        /* Dropdown escritorio */
+
+        .dropdown-menu {
+
+            min-width: 220px;
+
+            border-radius: 12px;
+
+            border: 0;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+
+        }
+
+
+
+        /* =========================
+ TABLET
+========================= */
+
+        @media(max-width:1199px) {
+
+
+            .navbar-nav .nav-link {
+
+                font-size: .9rem;
+
+                padding: .6rem .7rem;
+
+            }
+
+
+        }
+
+
+
+        /* =========================
+ MOVIL
+========================= */
+
+        @media(max-width:991px) {
+
+
+            .navbar-collapse {
+
+                background: #198754;
+
+                padding: 1rem;
+
+                margin-top: 1rem;
+
+                border-radius: 12px;
+
+            }
+
+
+            .navbar-nav {
+
+                width: 100%;
+
+            }
+
+
+
+            .navbar-nav .nav-item {
+
+                width: 100%;
+
+                margin: 0;
+
+            }
+
+
+
+            .navbar-nav .nav-link {
+
+                padding: .8rem 1rem;
+
+            }
+
+
+
+            /* Dropdown movil */
+
+            .dropdown-menu {
+
+                width: 100%;
+
+                background: #157347;
+
+                box-shadow: none;
+
+                border-radius: 8px;
+
+            }
+
+
+            .dropdown-item {
+
+                color: white;
+
+                padding: .7rem 1rem;
+
+            }
+
+
+            .dropdown-item:hover {
+
+                background: white;
+
+                color: #198754;
+
+            }
+
+
+
+        }
+
+
+
+
+
+        @media (max-width:1200px) {
+
+            .navbar-nav .nav-link {
+
+                font-size: .85rem;
+                padding: .5rem .6rem;
+
+            }
+
+        }
+    </STYLE>
+
+</head>
+
+
+
+
+
+<body>
+
+    <!-- =========================
+        NAVBAR
+    ========================= -->
+    <nav class="navbar navbar-expand-xl navbar-dark bg-success sticky-top shadow-sm">
+
+        <div class="container position-relative">
+
+            <!-- Logo -->
+            <a class="navbar-brand logo-facultad" href="{% url 'home' %}">
+
+                {% if navbar.logo %}
+                <img src="{{ navbar.logo.url }}" alt="Logo Facultad" class="logo-img">
+                {% else %}
+                Facultad de Derecho
+                {% endif %}
+
+            </a>
+
+
+            <!-- Botón móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <!-- Menú centrado -->
+            <div class="collapse navbar-collapse" id="navbarPrincipal">
+
+
+                <ul class="navbar-nav ms-auto">
+
+
+                    {% for item in menu %}
+
+
+                    {% if item.submenus.exists %}
+
+                    <li class="nav-item dropdown mx-1">
+
+                        <a class="nav-link dropdown-toggle fw-semibold px-3" href="{{ item.get_url }}"
+                            data-bs-toggle="dropdown">
+
+                            {{ item.nombre }}
+
+                        </a>
+
+
+                        <ul class="dropdown-menu shadow border-0 rounded-3">
+
+                            {% for submenu in item.submenus.all %}
+
+                            <li>
+                                <a class="dropdown-item" href="{{ submenu.get_url }}">
+                                    {{ submenu.nombre }}
+                                </a>
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </li>
+
+
+                    {% else %}
+
+                    <li class="nav-item mx-1">
+
+                        <a class="nav-link fw-semibold px-3" href="{{ item.get_url }}">
+
+                            {{ item.nombre }}
+
+                        </a>
+
+                    </li>
+
+
+                    {% endif %}
+
+
+                    {% endfor %}
+
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+
+
+
+
+
+    <!-- =========================
+         CONTENIDO
+    ========================= -->
+
+    {% block content %}
+    {% endblock %}
+
+
+
+
+
+
+
+
+    <!-- =========================
+        FOOTER
+    ========================= -->
+
+    <footer class="footer-institucional text-light pt-5 pb-3">
+
+        <div class="container">
+
+            <div class="row gy-5">
+
+
+                <!-- Facultad -->
+                <div class="col-lg-5">
+                    <h4 class="fw-bold mb-4 footer-neon">
+                        Facultad de Derecho y Ciencias Políticas
+                    </h4>
+
+                    <p class="text-secondary">
+
+                        <i class="bi bi-geo-alt-fill me-2 text-success"></i>
+
+                        Av. Juan Pablo II S/N
+                        <br>
+                        Urb. San Andrés
+                        <br>
+                        Trujillo - La Libertad
+
+                    </p>
+
+
+                    <p>
+
+                        <i class="bi bi-envelope-fill me-2 text-success"></i>
+
+                        <a href="mailto:facder@unitru.edu.pe" class="footer-link">
+
+                            facder@unitru.edu.pe
+
+                        </a>
+
+                    </p>
+
+
+
+                    <!-- Redes -->
+
+                    <!-- Redes -->
+                    <div class="mt-4 d-flex gap-3">
+
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <!-- Escuelas -->
+                <div class="col-lg-3 footer-col">
+
+                    <h5 class="fw-bold mb-4">
+                        Escuelas Profesionales
+                    </h5>
+
+
+                    <ul class="list-unstyled footer-list">
+
+
+                        <li class="mb-4">
+
+                            <i class="bi bi-chevron-right"></i>
+
+                            <strong>
+                                Escuela de Derecho
+                            </strong>
+
+                            <br>
+
+                            <i class="bi bi-envelope-fill text-success me-2"></i>
+
+                            <a href="mailto:derecho@unitru.edu.pe" class="footer-link">
+
+                                derecho@unitru.edu.pe
+
+                            </a>
+
+                        </li>
+
+
+
+                        <li>
+
+                            <i class="bi bi-chevron-right"></i>
+
+                            <strong>
+                                Escuela de Ciencia Política
+                            </strong>
+
+                            <br>
+
+                            <i class="bi bi-envelope-fill text-success me-2"></i>
+
+                            <a href="mailto:politica@unitru.edu.pe" class="footer-link">
+
+                                politica@unitru.edu.pe
+
+                            </a>
+
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+
+
+
+
+                <!-- Dependencias -->
+
+                <!-- Dependencias -->
+                <div class="col-lg-4 footer-col">
+
+
+                    <h5 class="fw-bold mb-4">
+                        Dependencias
+                    </h5>
+
+
+
+                    <ul class="list-unstyled footer-list">
+
+
+
+                        <li class="mb-4">
+
+                            <i class="bi bi-chevron-right"></i>
+
+                            <strong>
+                                Centro de Proyección y Extensión Jurídico Político
+                            </strong>
+
+
+                            <br>
+
+
+                            <i class="bi bi-envelope-fill text-success me-2"></i>
+
+
+                            <a href="mailto:consultoriojuridicogratuito@unitru.edu.pe" class="footer-link">
+
+                                consultoriojuridicogratuito@unitru.edu.pe
+
+                            </a>
+
+
+                        </li>
+
+
+
+
+                        <li>
+
+
+                            <i class="bi bi-chevron-right"></i>
+
+
+                            <strong>
+                                Segunda Especialidad de Derecho
+                            </strong>
+
+
+                            <br>
+
+
+                            <i class="bi bi-envelope-fill text-success me-2"></i>
+
+
+                            <a href="mailto:se.derecho@unitru.edu.pe" class="footer-link">
+
+                                se.derecho@unitru.edu.pe
+
+                            </a>
+
+
+                        </li>
+
+
+
+                    </ul>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <hr class="footer-divider my-5">
+
+
+
+
+
+            <!-- Copyright -->
+
+            <div class="row align-items-center">
+
+
+                <div class="col-md-6 text-center text-md-start">
+
+                    <small class="text-secondary">
+
+                        © 2026 Facultad de Derecho y CC.PP.
+                        <br>
+
+                        Todos los derechos reservados.
+
+                    </small>
+
+
+                </div>
+
+
+
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+
+
+                    <small class="text-secondary">
+
+                        Desarrollado por
+
+                        <strong class="text-white">
+                            jjcr
+                        </strong>
+
+                    </small>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </footer>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+    <script>
+        document.querySelectorAll('.navbar .dropdown').forEach(function (dropdown) {
+
+            let timeout;
+
+            dropdown.addEventListener('mouseenter', function () {
+
+                clearTimeout(timeout);
+
+                bootstrap.Dropdown.getOrCreateInstance(
+                    dropdown.querySelector('.dropdown-toggle')
+                ).show();
+
+            });
+
+            dropdown.addEventListener('mouseleave', function () {
+
+                timeout = setTimeout(function () {
+
+                    bootstrap.Dropdown.getOrCreateInstance(
+                        dropdown.querySelector('.dropdown-toggle')
+                    ).hide();
+
+                }, 250); // espera 250 ms antes de cerrar
+
+            });
+
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,253 @@
+{% if pagina.noticias.all %}
+
+<section id="noticias" class="noticias-section py-5">
+
+    <div class="container">
+
+
+        <!-- Encabezado -->
+        <div class="section-header text-center mb-5">
+
+            {% for encabezado in pagina.encabezados.all %}
+
+                {% if encabezado.seccion == "noticias" %}
+
+                    <h2 class="fw-bold">
+                        {{ encabezado.titulo }}
+                    </h2>
+
+                    <p class="text-muted mx-auto" style="max-width:700px;">
+                        {{ encabezado.descripcion }}
+                    </p>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+
+
+
+        <div class="row g-4">
+
+
+            {% for noticia in pagina.noticias.all %}
+
+
+            <div class="col-lg-4 col-md-6">
+
+
+                <article class="noticia-card">
+
+
+                    {% if noticia.imagen %}
+
+
+                    <div class="noticia-img-container">
+
+                        <img
+                            src="{{ noticia.imagen.url }}"
+                            alt="{{ noticia.titulo }}"
+                            class="noticia-img"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+
+                    {% endif %}
+
+
+
+
+                    <div class="noticia-body">
+
+
+
+                        {% if noticia.fecha %}
+
+                        <small class="noticia-fecha">
+
+                            <i class="bi bi-calendar3 me-2"></i>
+
+                            {{ noticia.fecha|date:"d M Y" }}
+
+                        </small>
+
+                        {% endif %}
+
+
+
+
+
+                        <h5>
+                            {{ noticia.titulo }}
+                        </h5>
+
+
+
+
+
+                        <p>
+
+                            {{ noticia.descripcion|truncatewords:25 }}
+
+                        </p>
+
+
+
+
+                        <a href="#"
+                           class="btn btn-success rounded-pill">
+
+                            Leer noticia
+
+                            <i class="bi bi-arrow-right ms-2"></i>
+
+                        </a>
+
+
+
+                    </div>
+
+
+                </article>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+{% endif %}
+
+<style>
+
+    .noticias-section{
+
+    background:#f8f9fa;
+
+}
+
+
+
+.noticia-card{
+
+    background:white;
+
+    height:100%;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s ease;
+
+}
+
+
+
+.noticia-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,.14);
+
+}
+
+
+
+.noticia-img-container{
+
+    height:260px;
+
+    overflow:hidden;
+
+}
+
+
+
+.noticia-img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s ease;
+
+}
+
+
+
+.noticia-card:hover .noticia-img{
+
+    transform:scale(1.07);
+
+}
+
+
+
+.noticia-body{
+
+    padding:30px;
+
+}
+
+
+
+.noticia-fecha{
+
+    color:#198754;
+
+    font-weight:600;
+
+}
+
+
+
+.noticia-body h5{
+
+    margin-top:15px;
+
+    font-weight:700;
+
+    line-height:1.4;
+
+}
+
+
+
+.noticia-body p{
+
+    color:#6c757d;
+
+    line-height:1.7;
+
+}
+
+
+
+.noticia-body .btn{
+
+    margin-top:10px;
+
+    padding:10px 25px;
+
+}
+</style>

@@ -1,0 +1,202 @@
+<section id="autoridades" class="autoridades-section py-5">
+
+    <div class="container">
+
+        <!-- Encabezado -->
+        <div class="section-header text-center mb-5">
+
+            {% for encabezado in pagina.encabezados.all %}
+                {% if encabezado.seccion == "autoridades" %}
+
+                    <h2 class="fw-bold">
+                        {{ encabezado.titulo }}
+                    </h2>
+
+                    {% if encabezado.descripcion %}
+                    <p class="section-description text-muted mx-auto">
+                        {{ encabezado.descripcion }}
+                    </p>
+                    {% endif %}
+
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
+        <!-- Autoridad Principal -->
+        {% if autoridad_principal %}
+
+        <div class="row justify-content-center mb-5">
+
+            <div class="col-lg-5">
+
+                <article class="autoridad-principal">
+
+                    {% if autoridad_principal.foto %}
+                    <img
+                        src="{{ autoridad_principal.foto.url }}"
+                        alt="{{ autoridad_principal.nombre }}"
+                        loading="lazy"
+                    >
+                    {% endif %}
+
+                    <span>{{ autoridad_principal.cargo }}</span>
+
+                    <h2>{{ autoridad_principal.nombre }}</h2>
+
+                    {% if autoridad_principal.correo %}
+                    <p>
+                        <i class="bi bi-envelope-fill me-2"></i>
+                        {{ autoridad_principal.correo }}
+                    </p>
+                    {% endif %}
+
+                </article>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <!-- Demás autoridades -->
+
+        {% if otras_autoridades %}
+
+        <div class="row g-4">
+
+            {% for autoridad in otras_autoridades %}
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+
+                <article class="autoridad-card">
+
+                    {% if autoridad.foto %}
+                    <img
+                        src="{{ autoridad.foto.url }}"
+                        alt="{{ autoridad.nombre }}"
+                        loading="lazy"
+                    >
+                    {% endif %}
+
+                    <span>{{ autoridad.cargo }}</span>
+
+                    <h5>{{ autoridad.nombre }}</h5>
+
+                    {% if autoridad.correo %}
+                    <small>
+                        <i class="bi bi-envelope me-1"></i>
+                        {{ autoridad.correo }}
+                    </small>
+                    {% endif %}
+
+                </article>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<style>
+    .autoridades-section{
+    background:#f8f9fa;
+}
+
+.section-description{
+    max-width:700px;
+}
+
+/* ======================
+   Tarjetas
+====================== */
+
+.autoridad-principal,
+.autoridad-card{
+    background:#fff;
+    text-align:center;
+    border-radius:24px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.autoridad-principal:hover,
+.autoridad-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+}
+
+/* ======================
+   Principal
+====================== */
+
+.autoridad-principal{
+    padding:3rem 2.5rem;
+    border-top:6px solid #198754;
+}
+
+.autoridad-principal img{
+    width:230px;
+    aspect-ratio:1;
+    object-fit:cover;
+    border-radius:50%;
+    border:7px solid #198754;
+}
+
+.autoridad-principal span,
+.autoridad-card span{
+    display:block;
+    margin-top:1.3rem;
+    color:#198754;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+.autoridad-principal h2{
+    margin:.75rem 0;
+    font-weight:800;
+}
+
+.autoridad-principal p{
+    color:#6c757d;
+    margin-bottom:0;
+}
+
+/* ======================
+   Cards
+====================== */
+
+.autoridad-card{
+    padding:2rem 1.5rem;
+    height:100%;
+}
+
+.autoridad-card img{
+    width:150px;
+    aspect-ratio:1;
+    object-fit:cover;
+    border-radius:50%;
+    border:5px solid #198754;
+}
+
+.autoridad-card h5{
+    margin-top:.75rem;
+    font-weight:700;
+}
+
+.autoridad-card small{
+    color:#6c757d;
+    display:block;
+    margin-top:.5rem;
+}
+</style>

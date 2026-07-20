@@ -1,0 +1,136 @@
+<section class="perfil-section py-5">
+
+    <div class="container">
+
+        <!-- Encabezado -->
+        <div class="section-header text-center mb-5">
+
+            {% for encabezado in pagina.encabezados.all %}
+            {% if encabezado.seccion == "perfiles_egresado" %}
+
+            <h2 class="fw-bold mb-3">
+                {{ encabezado.titulo }}
+            </h2>
+
+            {% if encabezado.descripcion %}
+            <p class="text-muted mx-auto" style="max-width:720px;">
+                {{ encabezado.descripcion }}
+            </p>
+            {% endif %}
+
+            {% endif %}
+            {% endfor %}
+
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            {% for perfil in pagina.perfiles_egresado.all %}
+
+            <div class="col-lg-6">
+
+                <article class="perfil-card h-100">
+
+                    <div class="perfil-icono">
+                        <i class="bi bi-person-check-fill"></i>
+                    </div>
+
+                    <div class="perfil-contenido">
+                        <p>{{ perfil.descripcion }}</p>
+                    </div>
+
+                </article>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+    .perfil-section {
+        background: #f8f9fa;
+    }
+
+    .perfil-card {
+        position: relative;
+        display: flex;
+        gap: 22px;
+        align-items: flex-start;
+        height: 100%;
+        padding: 2rem;
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+        transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .perfil-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 6px;
+        height: 100%;
+        background: #198754;
+    }
+
+    .perfil-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, .12);
+    }
+
+    .perfil-icono {
+        width: 65px;
+        height: 65px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #198754;
+        color: #fff;
+    }
+
+    .perfil-icono i {
+        font-size: 1.8rem;
+    }
+
+    .perfil-contenido {
+        flex: 1;
+    }
+
+    .perfil-contenido p {
+        margin: 0;
+        color: #555;
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+
+    @media (max-width:768px) {
+
+        .perfil-card {
+            padding: 1.5rem;
+            gap: 16px;
+        }
+
+        .perfil-icono {
+            width: 55px;
+            height: 55px;
+        }
+
+        .perfil-icono i {
+            font-size: 1.5rem;
+        }
+
+        .perfil-contenido p {
+            font-size: 1rem;
+        }
+
+    }
+</style>

@@ -1,0 +1,643 @@
+<section id="galeria" class="py-5 bg-light">
+
+
+    <div class="container">
+
+
+        <!-- TITULO -->
+        <div class="text-center mb-5">
+
+            <span class="text-success fw-semibold">
+                {{ secciones.galeria.subtitulo }}
+            </span>
+
+            <h2 class="fw-bold display-6 mt-2">
+                {{ secciones.galeria.titulo }}
+            </h2>
+
+            <p class="text-muted">
+                {{ secciones.galeria.descripcion }}
+            </p>
+
+        </div>
+
+
+
+
+        <!-- FILTROS -->
+
+        <div class="text-center mb-5">
+
+            <button class="btn btn-success filter-btn active" data-filter="all">
+                Todas
+            </button>
+
+
+            <button class="btn btn-outline-success filter-btn" data-filter="academico">
+                Académico
+            </button>
+
+
+            <button class="btn btn-outline-success filter-btn" data-filter="eventos">
+                Eventos
+            </button>
+
+
+            <button class="btn btn-outline-success filter-btn" data-filter="ceremonias">
+                Ceremonias
+            </button>
+
+
+            <button class="btn btn-outline-success filter-btn" data-filter="infraestructura">
+                Infraestructura
+            </button>
+
+        </div>
+
+
+        <!-- GALERIA -->
+
+
+        <div class="row g-4 gallery-container">
+
+
+            {% for foto in galeria %}
+
+
+            <div class="col-lg-3 col-md-4 col-sm-6 gallery-item" data-category="{{ foto.categoria }}">
+
+
+                <div class="gallery-card">
+
+
+
+                    <img src="{{ foto.imagen.url }}" alt="{{ foto.titulo }}" class="gallery-image"
+                        data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="{{ foto.imagen.url }}"
+                        data-title="{{ foto.titulo }}" data-description="{{ foto.descripcion }}">
+
+
+
+                    <!-- ICONO ZOOM -->
+
+                    <div class="zoom-icon">
+
+                        <i class="bi bi-zoom-in"></i>
+
+                    </div>
+
+
+
+
+                    <!-- INFORMACION -->
+
+                    <div class="gallery-info">
+
+
+                        <h5>
+
+                            {{ foto.titulo }}
+
+                        </h5>
+
+
+
+                        <p>
+
+                            {{ foto.descripcion|truncatechars:100 }}
+
+                        </p>
+
+
+
+                        <span class="badge bg-success">
+
+                            {{ foto.get_categoria_display }}
+
+                        </span>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+    <!-- MODAL -->
+
+
+    <div class="modal fade" id="galleryModal" tabindex="-1">
+
+
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+
+
+            <div class="modal-content bg-dark">
+
+
+
+                <div class="modal-header border-0">
+
+
+                    <h5 class="modal-title text-white" id="modalTitle">
+
+                    </h5>
+
+
+
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal">
+
+                    </button>
+
+
+                </div>
+
+
+
+
+
+                <div class="modal-body text-center">
+
+
+                    <img id="modalImage" class="img-fluid rounded">
+
+
+
+                    <p id="modalDescription" class="text-white mt-3">
+
+                    </p>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</section>
+
+
+<style>
+    /* GALERIA */
+
+
+    .gallery-card {
+
+        position: relative;
+
+        overflow: hidden;
+
+        border-radius: 20px;
+
+        height: 480px;
+
+        cursor: pointer;
+
+    }
+
+
+
+
+    .gallery-image {
+
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        transition: .5s ease;
+
+
+    }
+
+
+
+
+    .gallery-card:hover .gallery-image {
+
+
+        transform: scale(1.1);
+
+
+    }
+
+
+
+
+    /* INFORMACION */
+
+
+    .gallery-info {
+
+
+        position: absolute;
+
+
+        bottom: 0;
+
+        left: 0;
+
+
+        width: 100%;
+
+
+        padding: 25px;
+
+
+        color: white;
+
+
+
+        background:
+
+            linear-gradient(transparent,
+
+                rgba(0, 0, 0, .90));
+
+
+
+        transform: translateY(80px);
+
+
+        transition: .4s ease;
+
+
+
+    }
+
+
+
+    .gallery-card:hover .gallery-info {
+
+
+        transform: translateY(0);
+
+
+    }
+
+
+
+    .gallery-info h5 {
+
+
+        font-weight: 700;
+
+        margin-bottom: 8px;
+
+
+    }
+
+
+
+    .gallery-info p {
+
+
+        font-size: .9rem;
+
+        margin-bottom: 10px;
+
+    }
+
+
+
+    /* ZOOM */
+
+
+    .zoom-icon {
+
+
+        position: absolute;
+
+
+        top: 50%;
+
+        left: 50%;
+
+
+
+        transform: translate(-50%, -50%);
+
+
+
+        width: 60px;
+
+        height: 60px;
+
+
+
+        border-radius: 50%;
+
+
+
+        background: rgba(0, 0, 0, .6);
+
+
+
+        color: white;
+
+
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+
+
+        font-size: 30px;
+
+
+
+        opacity: 0;
+
+
+
+        transition: .4s;
+
+
+
+        pointer-events: none;
+
+
+    }
+
+
+
+    .gallery-card:hover .zoom-icon {
+
+
+        opacity: 1;
+
+
+    }
+
+
+
+    /* BOTONES */
+
+
+    .filter-btn {
+
+
+        margin: 5px;
+
+        border-radius: 30px;
+
+        padding: 10px 25px;
+
+
+    }
+
+
+
+    /* MODAL */
+
+
+    #galleryModal .modal-content {
+
+
+        background: rgba(0, 0, 0, .95);
+
+
+    }
+
+
+
+    #modalImage {
+
+
+        max-width: 100%;
+
+        max-height: 80vh;
+
+
+        object-fit: contain;
+
+
+    }
+
+
+
+
+    /* RESPONSIVE */
+
+
+    @media(max-width:768px) {
+
+
+        .gallery-card {
+
+
+            height: 320px;
+
+
+        }
+
+
+    }
+</style>
+
+<script>
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+
+
+            // FILTROS
+
+            const buttons =
+                document.querySelectorAll(".filter-btn");
+
+
+            const items =
+                document.querySelectorAll(".gallery-item");
+
+
+
+            buttons.forEach(button => {
+
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+
+                        let filter = this.dataset.filter;
+
+
+
+                        // CAMBIAR COLOR BOTONES
+
+                        buttons.forEach(btn => {
+
+
+                            btn.classList.remove(
+                                "btn-success"
+                            );
+
+
+                            btn.classList.add(
+                                "btn-outline-success"
+                            );
+
+
+                            btn.classList.remove(
+                                "active"
+                            );
+
+
+                        });
+
+
+
+                        // BOTON SELECCIONADO
+
+                        this.classList.remove(
+                            "btn-outline-success"
+                        );
+
+
+                        this.classList.add(
+                            "btn-success"
+                        );
+
+
+                        this.classList.add(
+                            "active"
+                        );
+
+
+
+
+
+                        // FILTRAR IMAGENES
+
+
+                        items.forEach(item => {
+
+
+                            let category =
+                                item.dataset.category;
+
+
+
+                            if (
+                                filter === "all" ||
+                                category === filter
+                            ) {
+
+
+                                item.style.display =
+                                    "block";
+
+
+                            }
+                            else {
+
+
+                                item.style.display =
+                                    "none";
+
+
+                            }
+
+
+
+                        });
+
+
+
+                    }
+
+                );
+
+
+            });
+
+
+            // MODAL
+
+
+            const images =
+                document.querySelectorAll(".gallery-image");
+
+
+            const modalImage =
+                document.getElementById("modalImage");
+
+
+            const modalTitle =
+                document.getElementById("modalTitle");
+
+
+            const modalDescription =
+                document.getElementById("modalDescription");
+
+
+
+
+            images.forEach(image => {
+
+
+                image.addEventListener(
+                    "click",
+                    function () {
+
+
+                        modalImage.src =
+                            this.dataset.image;
+
+
+
+                        modalTitle.textContent =
+                            this.dataset.title;
+
+
+
+                        modalDescription.textContent =
+                            this.dataset.description;
+
+
+
+                    });
+
+
+            });
+
+
+
+        });
+</script>

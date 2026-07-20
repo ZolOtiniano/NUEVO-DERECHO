@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <!-- 1. Portada -->
+    {% if pagina.hero %}
+        {% include "paginas/1hero.html" %}
+    {% endif %}
+
+    <!-- 2. Historia / Presentación -->
+    {% if pagina.historia %}
+        {% include "paginas/2historia.html" %}
+    {% endif %}
+
+    <!-- 3. Objetivos -->
+    {% if pagina.objetivos.exists %}
+        {% include "paginas/3objetivos.html" %}
+    {% endif %}
+
+    <!-- 4. Misión -->
+    {% if pagina.mision %}
+        {% include "paginas/4mision.html" %}
+    {% endif %}
+
+    <!-- 5. Visión -->
+    {% if pagina.vision %}
+        {% include "paginas/5vision.html" %}
+    {% endif %}
+
+    <!-- 6. Valores -->
+    {% if pagina.valores.exists %}
+        {% include "paginas/6valores.html" %}
+    {% endif %}
+
+    <!-- 7. Perfil del Egresado -->
+    {% if pagina.perfiles_egresado.exists %}
+        {% include "paginas/7perfil.html" %}
+    {% endif %}
+
+    <!-- 8. Autoridades -->
+    {% if pagina.autoridades.exists %}
+        {% include "paginas/8autoridades.html" %}
+    {% endif %}
+
+    <!-- 9. Funciones -->
+    {% if pagina.funciones.exists %}
+        {% include "paginas/9funciones.html" %}
+    {% endif %}
+
+    <!-- 10. Personal -->
+    {% if personas %}
+        {% include "paginas/10personas.html" %}
+    {% endif %}
+
+    <!-- 11. Galería -->
+    {% if pagina.galerias.exists %}
+        {% include "paginas/11galeria.html" %}
+    {% endif %}
+
+    <!-- 12. Documentos -->
+    {% if pagina.documentos.exists %}
+        {% include "paginas/12documentos.html" %}
+    {% endif %}
+
+    <!-- 13. Noticias -->
+    {% if pagina.noticias.exists %}
+        {% include "paginas/13noticias.html" %}
+    {% endif %}
+
+    <!-- 14. Contacto -->
+    {% if pagina.contacto %}
+        {% include "paginas/14contacto.html" %}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,214 @@
+<section class="historia-section py-5">
+
+    <div class="container">
+
+
+        <!-- Encabezado común -->
+        <div class="section-header text-center mb-5">
+
+            {% for encabezado in pagina.encabezados.all %}
+
+                {% if encabezado.seccion == "historia" %}
+
+                    <h2 class="fw-bold">
+                        {{ encabezado.titulo }}
+                    </h2>
+
+                    <p class="text-muted">
+                        {{ encabezado.descripcion }}
+                    </p>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+
+
+        <div class="row align-items-center g-5">
+
+
+            <!-- Imagen -->
+            <div class="col-lg-6">
+
+
+                {% if pagina.historia.imagen %}
+
+                <div class="historia-img-wrapper">
+
+
+                    <img 
+                        src="{{ pagina.historia.imagen.url }}"
+                        alt="{{ pagina.historia.titulo }}"
+                        class="historia-img"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+
+                </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+
+            <!-- Contenido -->
+            <div class="col-lg-6">
+
+
+                <h2 class="fw-bold mb-4">
+                    {{ pagina.historia.titulo }}
+                </h2>
+
+
+                <p class="historia-texto">
+                    {{ pagina.historia.contenido }}
+                </p>
+
+
+                <div class="historia-linea"></div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<style>
+.historia-section{
+    background:#fff;
+}
+
+
+/* Imagen */
+
+.historia-img-wrapper{
+
+    position:relative;
+
+    padding:15px;
+
+    text-align:center;
+
+}
+
+
+.historia-img-wrapper::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:85%;
+    height:85%;
+
+    background:#198754;
+
+    opacity:.12;
+
+    border-radius:30px;
+
+}
+
+
+
+.historia-img{
+
+    position:relative;
+
+    z-index:1;
+
+    width:100%;
+
+    height:auto;
+
+    max-height:500px;
+
+    object-fit:contain;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.15);
+
+    transition:.3s ease;
+
+}
+
+
+
+.historia-img:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+
+/* Texto */
+
+.historia-texto{
+
+    color:#555;
+
+    font-size:1.12rem;
+
+    line-height:1.9;
+
+    text-align:justify;
+
+}
+
+
+
+/* Línea decorativa */
+
+.historia-linea{
+
+    width:90px;
+
+    height:4px;
+
+    background:#198754;
+
+    margin-top:30px;
+
+    border-radius:20px;
+
+}
+
+
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .historia-img{
+
+        height:300px;
+
+    }
+
+
+    .historia-texto{
+
+        font-size:1rem;
+
+    }
+
+}
+</style>

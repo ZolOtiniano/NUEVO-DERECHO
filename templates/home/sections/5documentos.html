@@ -1,0 +1,182 @@
+<section id="documentos" class="py-5">
+
+    <div class="container">
+
+        <!-- Encabezado -->
+        <div class="text-center mb-5">
+
+            <span class="text-success fw-semibold text-uppercase">
+                {{ secciones.documentos.subtitulo }}
+            </span>
+
+            <h2 class="display-5 fw-bold mt-2">
+                {{ secciones.documentos.titulo }}
+            </h2>
+
+            <p class="text-muted col-lg-7 mx-auto">
+                {{ secciones.documentos.descripcion }}
+            </p>
+
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            {% for documento in documentos %}
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+
+                <div class="document-card h-100">
+
+                    <div class="document-icon">
+
+                        <i class="{{ documento.icono }}"></i>
+
+                    </div>
+
+                    <h4 class="mt-4 fw-bold">
+
+                        {{ documento.titulo }}
+
+                    </h4>
+
+                    <p class="text-muted">
+
+                        {{ documento.descripcion }}
+
+                    </p>
+
+                    {% if documento.archivo %}
+
+                    <a href="{{ documento.archivo.url }}" target="_blank" class="btn btn-primary rounded-pill px-4">
+
+                        <i class="bi bi-download me-2"></i>
+                        Descargar
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+    /*=====================================
+=        Documentos                   =
+=====================================*/
+
+    #documentos {
+
+        background: #f8fafc;
+
+    }
+
+    .document-card {
+
+        background: #fff;
+
+        border-radius: 20px;
+
+        padding: 40px 30px;
+
+        text-align: center;
+
+        height: 100%;
+
+        border: 1px solid #edf2f7;
+
+        transition: .35s;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
+
+    }
+
+    .document-card:hover {
+
+        transform: translateY(-8px);
+
+        box-shadow: 0 20px 45px rgba(0, 0, 0, .12);
+
+        border-color: #0abd31;
+
+    }
+
+    .document-icon {
+
+        width: 90px;
+
+        height: 90px;
+
+        margin: auto;
+
+        border-radius: 50%;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        background: linear-gradient(135deg, #0aa81f, #ff6b6b);
+
+        color: #fff;
+
+        font-size: 40px;
+
+        transition: .35s;
+
+    }
+
+    .document-card:hover .document-icon {
+
+        transform: scale(1.08) rotate(10deg);
+
+    }
+
+    .document-card h4 {
+
+        font-size: 1.3rem;
+
+        color: #212529;
+
+    }
+
+    .document-card p {
+
+        line-height: 1.8;
+
+        min-height: 90px;
+
+    }
+
+    .document-card .btn {
+
+        margin-top: auto;
+
+    }
+
+    .document-card .btn:hover {
+
+        transform: translateY(-2px);
+
+    }
+
+    @media(max-width:768px) {
+
+        .document-card {
+
+            padding: 35px 25px;
+
+        }
+
+    }
+</style>

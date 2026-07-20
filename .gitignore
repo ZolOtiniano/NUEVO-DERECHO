@@ -1,5 +1,36 @@
-*.pyc
+# *.pyc
+# __pycache__/
+# # db.sqlite3
+# .env
+# venv/
+
+
+
+
+# Python
 __pycache__/
-# db.sqlite3
-.env
+*.py[cod]
+
+# Entornos virtuales
 venv/
+env/
+.venv/
+
+# Variables de entorno
+.env
+
+# Archivos compilados
+*.log
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Static generado por collectstatic
+staticfiles/
+
+# Sistema
+.DS_Store
+Thumbs.db

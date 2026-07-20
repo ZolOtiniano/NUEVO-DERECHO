@@ -1,0 +1,226 @@
+<section class="galeria-section py-5">
+
+    <div class="container">
+
+
+        <!-- Encabezado -->
+        <div class="section-header text-center mb-5">
+
+            {% for encabezado in pagina.encabezados.all %}
+
+                {% if encabezado.seccion == "galeria" %}
+
+                    <h2 class="fw-bold">
+                        {{ encabezado.titulo }}
+                    </h2>
+
+                    <p class="text-muted mx-auto" style="max-width:700px;">
+                        {{ encabezado.descripcion }}
+                    </p>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+
+
+
+        <div class="row g-4">
+
+
+            {% for imagen in pagina.galerias.all %}
+
+
+            <div class="col-lg-4 col-md-6">
+
+
+                <div class="galeria-item">
+
+
+                    <img
+                        src="{{ imagen.imagen.url }}"
+                        class="galeria-img"
+                        alt="{{ imagen.titulo|default:'Imagen de galería' }}"
+                        loading="lazy"
+                    >
+
+
+
+                    <div class="galeria-overlay">
+
+
+                        <button
+                            class="btn btn-light rounded-circle"
+                            data-bs-toggle="modal"
+                            data-bs-target="#imagen{{ imagen.id }}"
+                        >
+
+                            <i class="bi bi-zoom-in"></i>
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                {% if imagen.titulo %}
+
+                <h6 class="text-center mt-3 fw-semibold">
+
+                    {{ imagen.titulo }}
+
+                </h6>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+
+
+            <!-- Modal -->
+
+            <div class="modal fade" id="imagen{{ imagen.id }}" tabindex="-1">
+
+
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+
+
+                    <div class="modal-content bg-transparent border-0">
+
+
+                        <img
+                            src="{{ imagen.imagen.url }}"
+                            class="modal-img"
+                            alt="{{ imagen.titulo }}"
+                        >
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+<style>
+    .galeria-section{
+
+    background:#f8f9fa;
+
+}
+
+
+
+.galeria-item{
+
+    position:relative;
+
+    height:300px;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.12);
+
+}
+
+
+
+.galeria-img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s ease;
+
+}
+
+
+
+.galeria-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.35);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    opacity:0;
+
+    transition:.3s ease;
+
+}
+
+
+
+.galeria-item:hover .galeria-overlay{
+
+    opacity:1;
+
+}
+
+
+
+.galeria-item:hover .galeria-img{
+
+    transform:scale(1.08);
+
+}
+
+
+
+.galeria-overlay button{
+
+    width:60px;
+
+    height:60px;
+
+}
+
+
+
+.modal-img{
+
+    width:100%;
+
+    max-height:85vh;
+
+    object-fit:contain;
+
+    border-radius:15px;
+
+}
+</style>

@@ -1,0 +1,176 @@
+<section id="decano" class="py-5 bg-light">
+
+    <div class="container">
+
+        {% if decano %}
+
+        <!-- Encabezado -->
+        <div class="text-center mb-5">
+
+            <span class="text-success fw-semibold text-uppercase">
+                {{ secciones.autoridad.subtitulo }}
+            </span>
+
+            <h2 class="display-5 fw-bold">
+                {{ secciones.autoridad.titulo }}
+            </h2>
+
+            <p class="text-muted col-lg-7 mx-auto">
+                {{ secciones.autoridad.descripcion }}
+            </p>
+
+        </div>
+
+
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+            <div class="row g-0 align-items-center">
+
+                <!-- Imagen -->
+
+                <div class="col-lg-5">
+
+                    <div class="text-center p-5">
+
+                        <img src="{{ decano.foto.url }}" class="img-fluid rounded-circle decano-img"
+                            alt="{{ decano.nombre }}">
+
+                    </div>
+
+                </div>
+
+                <!-- Información -->
+
+                <div class="col-lg-7">
+
+                    <div class="p-5">
+
+                     
+
+                        <h2 class="fw-bold mb-2">
+
+                            {{ decano.nombre }}
+
+                        </h2>
+
+                        <h5 class="text-primary mb-4">
+
+                            {{ decano.cargo }}
+
+                        </h5>
+
+                        <p class="text-muted">
+
+                            {{ decano.gestion }}
+
+                        </p>
+
+                        <hr>
+
+               
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<style>
+    /*=====================================
+=            Decano                   =
+=====================================*/
+
+    #decano {
+        background: #f8fafc;
+    }
+
+    #decano .card {
+
+        transition: .4s;
+
+    }
+
+    #decano .card:hover {
+
+        transform: translateY(-6px);
+
+        box-shadow: 0 20px 45px rgba(0, 0, 0, .12);
+
+    }
+
+    .decano-img {
+
+        width: 320px;
+
+        height: 320px;
+
+        object-fit: cover;
+
+        border: 8px solid #fff;
+
+        box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
+
+    }
+
+    #decano h2 {
+
+        color: #1f2937;
+
+    }
+
+    #decano h5 {
+
+        font-weight: 600;
+
+    }
+
+    #decano p {
+
+        line-height: 1.9;
+
+    }
+
+    blockquote {
+
+        border-left: 4px solid #0d6efd;
+
+        padding-left: 20px;
+
+        color: #6c757d;
+
+    }
+
+    @media(max-width:992px) {
+
+        .decano-img {
+
+            width: 240px;
+
+            height: 240px;
+
+        }
+
+    }
+
+    @media(max-width:576px) {
+
+        .decano-img {
+
+            width: 180px;
+
+            height: 180px;
+
+        }
+
+    }
+</style>
