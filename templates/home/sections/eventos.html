@@ -1,0 +1,519 @@
+<section class="eventos-section">
+
+    <div class="container-fluid px-0">
+
+        <!-- =====================================================
+             TÍTULO
+        ====================================================== -->
+
+        <div class="eventos-header text-center">
+
+            <h2>
+                Congresos y Seminarios
+            </h2>
+
+        </div>
+
+
+        <!-- =====================================================
+             CARRUSEL
+        ====================================================== -->
+        <div
+            id="eventosCarousel"
+            class="carousel slide"
+            data-bs-ride="carousel"
+            data-bs-interval="4000"
+            data-bs-wrap="true"
+            
+        >
+
+            <div class="carousel-inner">
+
+                {% for grupo in eventos_grupos %}
+
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+
+                        <div class="row justify-content-center eventos-row">
+
+                            {% for evento in grupo %}
+
+                                <div class="
+                                    col-12
+                                    {% if grupo|length == 2 %}
+                                        col-md-5
+                                    {% else %}
+                                        col-md-4
+                                    {% endif %}
+                                ">
+
+                                    <div class="evento-card">
+
+                                        <!-- =====================================================
+                                             FECHA
+                                        ====================================================== -->
+
+                                        <div class="evento-fecha">
+
+                                            <span></span>
+
+                                            <h3>
+                                                {{ evento.fecha_inicio|date:"F Y" }}
+                                            </h3>
+
+                                        </div>
+
+
+                                        <!-- =====================================================
+                                             IMAGEN
+                                        ====================================================== -->
+
+                                        <div class="evento-imagen">
+
+                                            <img
+                                                src="{{ evento.imagen.url }}"
+                                                alt="{{ evento.titulo }}"
+                                            >
+
+                                        </div>
+
+
+                                        <!-- =====================================================
+                                             BOTÓN
+                                        ====================================================== -->
+
+                                        <div class="evento-boton">
+
+                                            {% if evento.enlace %}
+
+                                                <a
+                                                    href="{{ evento.enlace }}"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    Más información
+                                                </a>
+
+                                            {% else %}
+
+                                                <a href="#">
+                                                    Más información
+                                                </a>
+
+                                            {% endif %}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                {% empty %}
+
+                    <div class="text-center py-5">
+
+                        <p class="text-muted">
+                            No hay eventos disponibles.
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- =====================================================
+                 INDICADORES
+                 SOLO APARECEN SI HAY MÁS DE 3 EVENTOS
+            ====================================================== -->
+
+            {% if eventos_grupos|length > 1 %}
+
+                <div class="carousel-indicators eventos-indicators">
+
+                    {% for grupo in eventos_grupos %}
+
+                        <button
+                            type="button"
+                            data-bs-target="#eventosCarousel"
+                            data-bs-slide-to="{{ forloop.counter0 }}"
+                            {% if forloop.first %}
+                                class="active"
+                                aria-current="true"
+                            {% endif %}
+                            aria-label="Página {{ forloop.counter }}"
+                        ></button>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+/* =====================================================
+   EVENTOS
+===================================================== */
+
+.eventos-section {
+    background: #ffffff;
+    padding: 55px 0 25px;
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   TÍTULO
+===================================================== */
+
+.eventos-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.eventos-header h2 {
+    color: #222222;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+}
+
+
+/* =====================================================
+   FILA DE EVENTOS
+===================================================== */
+
+.eventos-row {
+    max-width: 1420px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+
+/* =====================================================
+   TARJETA
+===================================================== */
+
+.evento-card {
+    text-align: center;
+    width: 100%;
+}
+
+
+/* =====================================================
+   FECHA
+===================================================== */
+
+.evento-fecha {
+    margin-bottom: 0;
+}
+
+.evento-fecha span {
+    display: block;
+
+    width: 96px;
+    height: 5px;
+
+    background: #009b68;
+
+    margin: 0 auto 10px;
+}
+
+.evento-fecha h3 {
+    color: #009b68;
+
+    font-size: 28px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    margin: 0 0 0;
+}
+
+
+/* =====================================================
+   IMAGEN
+===================================================== */
+
+.evento-imagen {
+    width: 100%;
+    max-width: 433px;
+
+    height: 387px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    background: #f1f1f1;
+}
+
+.evento-imagen img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.4s ease;
+}
+
+
+/* Efecto suave al pasar el mouse */
+
+.evento-imagen:hover img {
+    transform: scale(1.02);
+}
+
+
+/* =====================================================
+   BOTÓN
+===================================================== */
+
+.evento-boton {
+    margin-top: 11px;
+}
+
+.evento-boton a {
+    display: inline-block;
+
+    background: #009b68;
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    padding: 13px 28px;
+
+    min-width: 210px;
+
+    border: none;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.evento-boton a:hover {
+    background: #007f57;
+    color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   INDICADORES
+===================================================== */
+
+.eventos-indicators {
+    position: relative;
+
+    margin-top: 34px;
+    margin-bottom: 0;
+
+    justify-content: center;
+}
+
+.eventos-indicators button {
+    width: 17px;
+    height: 17px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    margin: 0 5px;
+
+    border: none;
+
+    background-color: #c7c7c7;
+
+    opacity: 1;
+}
+
+.eventos-indicators button.active {
+    background-color: #009b68;
+}
+
+
+/* =====================================================
+   ESPACIADO ENTRE LAS 3 TARJETAS
+===================================================== */
+
+.eventos-row > div {
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1199px) {
+
+    .eventos-header h2 {
+        font-size: 44px;
+    }
+
+    .eventos-imagen {
+        max-width: 400px;
+    }
+
+    .evento-imagen {
+        height: 350px;
+    }
+
+    .evento-fecha h3 {
+        font-size: 25px;
+    }
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 991px) {
+
+    .eventos-section {
+        padding: 45px 0 25px;
+    }
+
+    .eventos-header {
+        margin-bottom: 30px;
+    }
+
+    .eventos-header h2 {
+        font-size: 40px;
+    }
+
+    .evento-imagen {
+        height: 320px;
+    }
+
+    .evento-fecha h3 {
+        font-size: 23px;
+    }
+
+    .evento-boton a {
+        font-size: 17px;
+        min-width: 190px;
+    }
+}
+
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
+@media (max-width: 767px) {
+
+    .eventos-section {
+        padding: 40px 15px 25px;
+    }
+
+    .eventos-header {
+        margin-bottom: 30px;
+    }
+
+    .eventos-header h2 {
+        font-size: 32px;
+    }
+
+    .evento-card {
+        margin-bottom: 30px;
+    }
+
+    .evento-fecha span {
+        width: 75px;
+        height: 4px;
+    }
+
+    .evento-fecha h3 {
+        font-size: 22px;
+    }
+
+    .evento-imagen {
+        max-width: 500px;
+        height: auto;
+
+        aspect-ratio: 1.12 / 1;
+    }
+
+    .evento-boton {
+        margin-top: 10px;
+    }
+
+    .evento-boton a {
+        font-size: 17px;
+        padding: 11px 22px;
+        min-width: 180px;
+    }
+
+    .eventos-indicators {
+        margin-top: 20px;
+    }
+
+}
+
+
+/* =====================================================
+   MÓVIL PEQUEÑO
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .eventos-header h2 {
+        font-size: 28px;
+    }
+
+    .evento-fecha h3 {
+        font-size: 20px;
+    }
+
+    .evento-imagen {
+        aspect-ratio: 1 / 1;
+    }
+
+}
+</style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const carouselElement = document.getElementById("eventosCarousel");
+
+    if (!carouselElement) {
+        return;
+    }
+
+    const carousel = new bootstrap.Carousel(carouselElement, {
+        interval: 4000,
+        ride: "carousel",
+        wrap: true,
+        pause: false,
+        touch: true
+    });
+
+});
+</script>

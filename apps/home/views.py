@@ -8,23 +8,36 @@ from .models import (
     Autoridad,
     Documento,
     Noticia,
-    Evento,
     Galeria,
 )
 
+from apps.eventos.models import Evento
 
 
 def index(request):
-
 
     secciones = {
         seccion.nombre: seccion
         for seccion in Seccion.objects.filter(activo=True)
     }
 
+    # =====================================================
+    # EVENTOS
+    # =====================================================
+
+    eventos = Evento.objects.filter(
+        activo=True
+    ).order_by(
+        "-fecha_inicio"
+    )
+
+    eventos_grupos = [
+        eventos[i:i + 3]
+        for i in range(0, len(eventos), 3)
+    ]
+
 
     context = {
-
 
         # Hero
         "heroes": Hero.objects.filter(
@@ -33,24 +46,18 @@ def index(request):
             "orden"
         ),
 
-
-
         # Bienvenida
         "bienvenida": Bienvenida.objects.first(),
 
-
-        # Todas las secciones
+        # Secciones
         "secciones": secciones,
-        
-    
+
         # Características
         "caracteristicas": Caracteristica.objects.filter(
             activo=True
         ).order_by(
             "orden"
         ),
-
-
 
         # Decano
         "decano": Autoridad.objects.filter(
@@ -59,16 +66,16 @@ def index(request):
             "orden"
         ).first(),
 
-
-
-        # Documentos académicos
+        # Documentos
         "documentos": Documento.objects.filter(
             activo=True
         ).order_by(
             "orden"
         ),
 
-
+        # Eventos
+        "eventos": eventos,
+        "eventos_grupos": eventos_grupos,
 
         # Noticias
         "noticias": Noticia.objects.filter(
@@ -77,24 +84,12 @@ def index(request):
             "orden"
         ),
 
-
-
-        # Eventos
-        "eventos": Evento.objects.filter(
-            activo=True
-        ).order_by(
-            "-fecha"
-        )[:3],
-
-
-
         # Galería
         "galeria": Galeria.objects.filter(
             activo=True
         ).order_by(
             "orden"
         )[:8],
-
     }
 
 
@@ -105,8 +100,6 @@ def index(request):
     )
 
 
-
-
 def autoridades(request):
 
     autoridades = Autoridad.objects.filter(
@@ -114,7 +107,6 @@ def autoridades(request):
     ).order_by(
         "orden"
     )
-
 
     return render(
         request,
