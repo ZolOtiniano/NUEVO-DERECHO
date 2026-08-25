@@ -1,0 +1,2501 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    /* =====================================================
+       EVENTO - DISEÑO MODERNO
+    ===================================================== */
+
+    .evento-detalle {
+        background: #f8f9fb;
+        color: #1f2937;
+    }
+
+    /* HERO */
+
+    .evento-hero {
+        position: relative;
+        padding: 90px 0 80px;
+        background: linear-gradient(
+            135deg,
+            #0b1f3a 0%,
+            #12345b 55%,
+            #164a7a 100%
+        );
+        overflow: hidden;
+    }
+
+    .evento-hero::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        top: -250px;
+        right: -150px;
+    }
+
+    .evento-hero::after {
+        content: "";
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.03);
+        bottom: -200px;
+        left: -100px;
+    }
+
+    .evento-hero-contenido {
+        position: relative;
+        z-index: 2;
+    }
+
+    .evento-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 18px;
+        border: 1px solid rgba(255,255,255,.25);
+        border-radius: 50px;
+        color: white;
+        background: rgba(255,255,255,.08);
+        backdrop-filter: blur(8px);
+        font-size: .85rem;
+        font-weight: 600;
+        letter-spacing: .5px;
+        margin-bottom: 22px;
+    }
+
+    .evento-titulo {
+        max-width: 950px;
+        margin: 0 auto;
+        color: white;
+        font-size: clamp(2.2rem, 5vw, 4.2rem);
+        font-weight: 800;
+        line-height: 1.08;
+        letter-spacing: -1.5px;
+    }
+
+    .evento-subtitulo {
+        max-width: 800px;
+        margin: 25px auto 0;
+        color: rgba(255,255,255,.75);
+        font-size: 1.2rem;
+        line-height: 1.7;
+    }
+
+    .evento-fecha {
+        margin-top: 30px;
+        color: rgba(255,255,255,.9);
+        font-size: 1rem;
+    }
+
+    .evento-fecha i {
+        margin-right: 8px;
+    }
+
+
+    /* CONTENIDO PRINCIPAL */
+
+    .evento-contenido {
+        padding: 80px 0;
+    }
+
+
+    /* IMAGEN */
+
+    .evento-imagen-wrapper {
+        position: relative;
+    }
+
+    .evento-imagen {
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+        border-radius: 24px;
+        box-shadow: 0 25px 60px rgba(0,0,0,.12);
+    }
+
+
+    /* TEXTO PRINCIPAL */
+
+    .evento-introduccion {
+        padding-left: 20px;
+    }
+
+    .evento-etiqueta {
+        display: inline-block;
+        color: #0d6efd;
+        font-size: .8rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    .evento-introduccion h2 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 22px;
+        color: #172033;
+    }
+
+    .evento-descripcion {
+        color: #667085;
+        font-size: 1.08rem;
+        line-height: 1.9;
+    }
+
+
+    /* BOTÓN */
+
+    .evento-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 28px;
+        padding: 14px 24px;
+        border-radius: 12px;
+        background: #0d6efd;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all .25s ease;
+        box-shadow: 0 10px 25px rgba(13,110,253,.2);
+    }
+
+    .evento-btn:hover {
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 15px 30px rgba(13,110,253,.3);
+    }
+
+
+    /* SECCIONES */
+
+    .evento-seccion {
+        padding: 85px 0;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .evento-seccion-header {
+        margin-bottom: 35px;
+    }
+
+    .evento-numero {
+        color: #0d6efd;
+        font-size: .8rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    .evento-seccion h2 {
+        color: #172033;
+        font-size: 2.3rem;
+        font-weight: 800;
+        margin-bottom: 0;
+    }
+
+    .evento-seccion-contenido {
+        color: #667085;
+        font-size: 1.05rem;
+        line-height: 1.9;
+    }
+
+
+    /* TARJETA DE INFORMACIÓN */
+
+    .evento-info-card {
+        margin-top: 70px;
+        padding: 35px;
+        border-radius: 22px;
+        background: white;
+        box-shadow: 0 15px 50px rgba(16,24,40,.07);
+    }
+
+    .evento-info-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .evento-info-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: #eef5ff;
+        color: #0d6efd;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .evento-info-label {
+        color: #98a2b3;
+        font-size: .8rem;
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    .evento-info-value {
+        color: #172033;
+        font-weight: 700;
+    }
+
+
+    /* ORGANIZA / AUSPICIAN */
+
+    .evento-organizacion {
+        padding: 80px 0;
+        background: white;
+    }
+
+    .evento-organizacion-card {
+        height: 100%;
+        padding: 35px;
+        border: 1px solid #e8ebf0;
+        border-radius: 20px;
+        background: #fff;
+        transition: all .25s ease;
+    }
+
+    .evento-organizacion-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(16,24,40,.08);
+    }
+
+    .evento-organizacion-card h3 {
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin-bottom: 18px;
+        color: #172033;
+    }
+
+
+    /* CONTACTO */
+
+    .evento-contacto {
+        padding: 90px 20px;
+        text-align: center;
+        background: #0b1f3a;
+        color: white;
+    }
+
+    .evento-contacto h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+
+    .evento-contacto-texto {
+        max-width: 700px;
+        margin: 0 auto;
+        color: rgba(255,255,255,.7);
+        line-height: 1.8;
+    }
+
+
+    /* VOLVER */
+
+    .evento-volver {
+        padding: 35px 0;
+        text-align: center;
+        background: white;
+    }
+
+    .evento-volver a {
+        color: #667085;
+        text-decoration: none;
+        font-weight: 600;
+        transition: .2s;
+    }
+
+    .evento-volver a:hover {
+        color: #0d6efd;
+    }
+
+
+    /* RESPONSIVE */
+
+    @media (max-width: 991px) {
+
+        .evento-hero {
+            padding: 70px 20px;
+        }
+
+        .evento-contenido {
+            padding: 55px 20px;
+        }
+
+        .evento-imagen {
+            height: 400px;
+        }
+
+        .evento-introduccion {
+            padding-left: 0;
+            margin-top: 35px;
+        }
+
+        .evento-seccion {
+            padding: 60px 20px;
+        }
+
+    }
+
+    @media (max-width: 575px) {
+
+        .evento-hero {
+            padding: 55px 15px;
+        }
+
+        .evento-titulo {
+            font-size: 2.2rem;
+        }
+
+        .evento-subtitulo {
+            font-size: 1rem;
+        }
+
+        .evento-imagen {
+            height: 280px;
+            border-radius: 18px;
+        }
+
+        .evento-introduccion h2 {
+            font-size: 1.8rem;
+        }
+
+        .evento-seccion h2 {
+            font-size: 1.8rem;
+        }
+
+        .evento-info-card {
+            padding: 25px;
+        }
+
+        .evento-contacto h2 {
+            font-size: 2rem;
+        }
+
+    }
+
+
+
+    .evento-subseccion {
+        display: flex;
+        gap: 20px;
+        padding: 28px 0;
+        border-bottom: 1px solid #e9edf2;
+    }
+
+    .evento-subseccion:last-child {
+        border-bottom: none;
+    }
+
+    .evento-subseccion-icono {
+        width: 52px;
+        height: 52px;
+        min-width: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        background: #eef5ff;
+        color: #0d6efd;
+        font-size: 1.25rem;
+    }
+
+    .evento-subseccion h3 {
+        margin-bottom: 10px;
+        color: #172033;
+        font-size: 1.25rem;
+        font-weight: 750;
+    }
+    
+
+
+    .evento-certificados {
+        padding: 70px 0;
+        background: #f1f5f9;
+    }
+
+    .evento-certificados-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        padding: 45px;
+        border-radius: 24px;
+        background: #0b1f3a;
+        color: white;
+        box-shadow: 0 20px 50px rgba(11,31,58,.15);
+    }
+
+    .evento-certificados-etiqueta {
+        display: block;
+        margin-bottom: 10px;
+        color: #8fbaff;
+        font-size: .75rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .evento-certificados-card h2 {
+        margin-bottom: 10px;
+        font-size: 2rem;
+        font-weight: 800;
+    }
+
+    .evento-certificados-card p {
+        max-width: 600px;
+        margin: 0;
+        color: rgba(255,255,255,.7);
+        line-height: 1.7;
+    }
+
+    .evento-certificados-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 14px 24px;
+        border-radius: 12px;
+        background: white;
+        color: #0b1f3a;
+        text-decoration: none;
+        font-weight: 700;
+        white-space: nowrap;
+        transition: all .25s ease;
+    }
+
+    .evento-certificados-btn:hover {
+        color: #0d6efd;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 767px) {
+
+        .evento-certificados-card {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 30px;
+        }
+
+    }
+
+
+
+    /* =====================================================
+   METODOLOGÍA
+===================================================== */
+
+.evento-metodologia {
+    padding: 100px 0;
+    background: #f8fafc;
+}
+
+
+/* ENCABEZADO */
+
+.evento-metodologia-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 45px;
+}
+
+.evento-seccion-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #0d6efd;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.evento-metodologia-header h2 {
+    margin: 0;
+    color: #172033;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.evento-seccion-numero {
+    color: #dce7f7;
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: .8;
+}
+
+
+/* METODOLOGÍA */
+
+.evento-metodologia-intro {
+    display: flex;
+    gap: 25px;
+    padding: 35px;
+    margin-bottom: 45px;
+    border-radius: 22px;
+    background: white;
+    border: 1px solid #e8edf4;
+    box-shadow: 0 15px 45px rgba(16, 24, 40, .06);
+}
+
+.evento-metodologia-icono {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: #edf4ff;
+    color: #0d6efd;
+    font-size: 1.4rem;
+}
+
+.evento-metodologia-intro h3 {
+    margin: 3px 0 12px;
+    color: #172033;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+
+/* ACTIVIDADES */
+
+.evento-actividades {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+
+/* TARJETA */
+
+.evento-actividad-card {
+    position: relative;
+    padding: 32px;
+    min-height: 280px;
+    border-radius: 22px;
+    background: white;
+    border: 1px solid #e8edf4;
+    box-shadow: 0 10px 35px rgba(16, 24, 40, .05);
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.evento-actividad-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #0d6efd;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s ease;
+}
+
+.evento-actividad-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 20px 45px rgba(16, 24, 40, .10);
+}
+
+.evento-actividad-card:hover::before {
+    transform: scaleX(1);
+}
+
+
+/* PARTE SUPERIOR */
+
+.evento-actividad-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.evento-actividad-numero {
+    color: #aab4c3;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.evento-actividad-icono {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: #edf4ff;
+    color: #0d6efd;
+    font-size: 1.25rem;
+}
+
+
+/* TÍTULO */
+
+.evento-actividad-card h3 {
+    margin: 0;
+    color: #172033;
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+
+/* LÍNEA */
+
+.evento-actividad-linea {
+    width: 40px;
+    height: 3px;
+    margin: 18px 0;
+    border-radius: 10px;
+    background: #0d6efd;
+}
+
+
+/* TEXTO */
+
+.evento-contenido-texto {
+    color: #667085;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.evento-contenido-texto p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 991px) {
+
+    .evento-metodologia {
+        padding: 75px 20px;
+    }
+
+    .evento-actividades {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 575px) {
+
+    .evento-metodologia {
+        padding: 60px 15px;
+    }
+
+    .evento-metodologia-header {
+        align-items: flex-start;
+    }
+
+    .evento-seccion-numero {
+        font-size: 3rem;
+    }
+
+    .evento-metodologia-intro {
+        padding: 25px;
+        flex-direction: column;
+    }
+
+    .evento-actividad-card {
+        padding: 25px;
+    }
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   BLOQUES GENERALES
+===================================================== */
+
+.evento-programa,
+.evento-cronograma {
+    padding: 100px 0;
+    background: #ffffff;
+}
+
+.evento-bloque-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.evento-bloque-header h2 {
+    margin: 0;
+    color: #172033;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.evento-bloque-icono {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 17px;
+    background: #edf4ff;
+    color: #0d6efd;
+    font-size: 1.4rem;
+}
+
+
+/* =====================================================
+   PROGRAMA
+===================================================== */
+
+.evento-programa-card {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+    border-radius: 24px;
+    background: #f8fafc;
+    border: 1px solid #e8edf4;
+}
+
+.evento-programa-icono {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: #0d6efd;
+    color: white;
+    font-size: 1.4rem;
+}
+
+.evento-programa-contenido {
+    flex: 1;
+    color: #667085;
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+
+/* =====================================================
+   CRONOGRAMA
+===================================================== */
+
+.evento-cronograma {
+    background: #f8fafc;
+}
+
+.evento-cronograma-card {
+    position: relative;
+    padding: 45px 45px 45px 75px;
+    border-radius: 24px;
+    background: white;
+    border: 1px solid #e8edf4;
+    box-shadow: 0 15px 45px rgba(16, 24, 40, .06);
+}
+
+.evento-cronograma-linea {
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    left: 38px;
+    width: 2px;
+    background: #dbe7f7;
+}
+
+.evento-cronograma-contenido {
+    position: relative;
+    color: #667085;
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+
+/* =====================================================
+   ORGANIZACIÓN
+===================================================== */
+
+.evento-organizacion {
+    padding: 100px 0;
+    background: white;
+}
+
+.evento-organizacion-card {
+    height: 100%;
+    display: flex;
+    gap: 25px;
+    padding: 35px;
+    border-radius: 22px;
+    border: 1px solid #e8edf4;
+    background: #ffffff;
+    box-shadow: 0 10px 35px rgba(16, 24, 40, .05);
+    transition: all .3s ease;
+}
+
+.evento-organizacion-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(16, 24, 40, .10);
+}
+
+.evento-organizacion-icono {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: #edf4ff;
+    color: #0d6efd;
+    font-size: 1.3rem;
+}
+
+.evento-organizacion-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #0d6efd;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.evento-organizacion-card h3 {
+    margin-bottom: 15px;
+    color: #172033;
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   CONTACTO
+===================================================== */
+
+.evento-contacto {
+    padding: 100px 20px;
+    background: #f8fafc;
+}
+
+.evento-contacto-card {
+    max-width: 900px;
+    margin: auto;
+    padding: 65px 45px;
+    text-align: center;
+    border-radius: 28px;
+    background: linear-gradient(
+        135deg,
+        #0b1f3a,
+        #123b68
+    );
+    color: white;
+    box-shadow: 0 25px 60px rgba(11, 31, 58, .18);
+}
+
+.evento-contacto-icono {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: rgba(255,255,255,.1);
+    font-size: 1.5rem;
+}
+
+.evento-contacto-label {
+    display: block;
+    margin-bottom: 12px;
+    color: #8fbaff;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.evento-contacto-card h2 {
+    margin-bottom: 20px;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+}
+
+.evento-contacto-texto {
+    max-width: 650px;
+    margin: auto;
+    color: rgba(255,255,255,.7);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.evento-contacto-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    padding: 14px 25px;
+    border-radius: 12px;
+    background: white;
+    color: #0b1f3a;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all .25s ease;
+}
+
+.evento-contacto-btn:hover {
+    color: #0d6efd;
+    transform: translateY(-3px);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 767px) {
+
+    .evento-programa,
+    .evento-cronograma,
+    .evento-organizacion,
+    .evento-contacto {
+        padding: 65px 20px;
+    }
+
+    .evento-bloque-header {
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .evento-bloque-icono {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+    }
+
+    .evento-programa-card {
+        flex-direction: column;
+        padding: 30px;
+    }
+
+    .evento-cronograma-card {
+        padding: 30px 30px 30px 60px;
+    }
+
+    .evento-cronograma-linea {
+        left: 30px;
+    }
+
+    .evento-organizacion-card {
+        padding: 28px;
+    }
+
+    .evento-contacto-card {
+        padding: 45px 25px;
+    }
+
+}
+
+
+
+
+
+
+/* =====================================================
+   05 — CONTACTO
+===================================================== */
+
+.evento-contacto {
+    padding: 100px 0;
+    background: #f8fafc;
+}
+
+
+/* ENCABEZADO */
+
+.evento-contacto-header {
+    margin-bottom: 40px;
+}
+
+
+/* TARJETA */
+
+.evento-contacto-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 55px 60px;
+
+    border-radius: 28px;
+
+    background: #0b1f3a;
+
+    color: white;
+
+    box-shadow:
+        0 25px 60px rgba(11, 31, 58, .16);
+}
+
+
+/* DECORACIONES */
+
+.evento-contacto-decoracion {
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.evento-contacto-decoracion-1 {
+    width: 280px;
+    height: 280px;
+
+    right: -120px;
+    top: -150px;
+
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.evento-contacto-decoracion-2 {
+    width: 180px;
+    height: 180px;
+
+    right: -60px;
+    bottom: -100px;
+
+    border: 1px solid rgba(255,255,255,.06);
+}
+
+
+/* ICONO */
+
+.evento-contacto-icono {
+    position: relative;
+
+    width: 82px;
+    height: 82px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,.09);
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    color: #8fbaff;
+
+    font-size: 2rem;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.12);
+}
+
+
+/* LABEL */
+
+.evento-contacto-label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #8fbaff;
+
+    font-size: .72rem;
+
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
+}
+
+
+/* TÍTULO */
+
+.evento-contacto-card h3 {
+    margin-bottom: 18px;
+
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+
+    font-weight: 800;
+
+    letter-spacing: -.5px;
+}
+
+
+/* TEXTO */
+
+.evento-contacto-texto {
+    max-width: 650px;
+
+    color: rgba(255,255,255,.68);
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+}
+
+.evento-contacto-texto p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* BOTÓN */
+
+.evento-contacto-btn {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 15px 22px;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: #0b1f3a;
+
+    text-decoration: none;
+
+    font-size: .95rem;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.12);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        color .25s ease;
+}
+
+.evento-contacto-btn i {
+    font-size: 1rem;
+}
+
+.evento-contacto-btn:hover {
+    color: #0d6efd;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.18);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 991px) {
+
+    .evento-contacto {
+        padding: 75px 20px;
+    }
+
+    .evento-contacto-card {
+        padding: 45px 35px;
+    }
+
+    .evento-contacto-icono {
+        margin-bottom: 10px;
+    }
+
+}
+
+
+@media (max-width: 575px) {
+
+    .evento-contacto {
+        padding: 60px 15px;
+    }
+
+    .evento-contacto-card {
+        padding: 35px 25px;
+
+        border-radius: 22px;
+    }
+
+    .evento-contacto-card h3 {
+        font-size: 1.8rem;
+    }
+
+    .evento-contacto-btn {
+        width: 100%;
+    }
+
+}
+
+
+
+
+
+
+/* =====================================================
+   CONTACTO - EVENTO
+   ===================================================== */
+
+.evento-contacto-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 40px 45px;
+
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 24px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07);
+
+    color: #212529;
+}
+
+/* CONTENEDOR */
+.evento-contacto-card .row {
+    position: relative;
+    z-index: 2;
+}
+
+/* =====================================================
+   ICONO
+   ===================================================== */
+
+.evento-contacto-icono {
+    width: 80px;
+    height: 80px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f1f6ff;
+    border-radius: 20px;
+
+    color: #74a7ff;
+    font-size: 32px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* =====================================================
+   LABEL
+   ===================================================== */
+
+.evento-contacto-label {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color: #74a7ff !important;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* =====================================================
+   TITULO
+   ===================================================== */
+
+.evento-contacto-card h3 {
+    margin: 0 0 12px 0;
+
+    color: #212529 !important;
+
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* =====================================================
+   TEXTO
+   ===================================================== */
+
+.evento-contacto-texto {
+    color: #6c757d !important;
+
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.evento-contacto-texto p {
+    margin-bottom: 8px;
+
+    color: #6c757d !important;
+}
+
+/* =====================================================
+   BOTÓN
+   ===================================================== */
+
+.evento-contacto-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 13px 22px;
+
+    background: #74a7ff;
+    color: #ffffff !important;
+
+    border-radius: 12px;
+
+    text-decoration: none !important;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.evento-contacto-btn:hover {
+    background: #5d91eb;
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+}
+
+.evento-contacto-btn i {
+    transition: transform 0.3s ease;
+}
+
+.evento-contacto-btn:hover i {
+    transform: translate(3px, -3px);
+}
+
+/* =====================================================
+   DECORACIONES
+   ===================================================== */
+
+.evento-contacto-decoracion {
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.evento-contacto-decoracion-1 {
+    width: 180px;
+    height: 180px;
+
+    top: -100px;
+    right: -80px;
+
+    background: #74a7ff;
+    opacity: 0.06;
+}
+
+.evento-contacto-decoracion-2 {
+    width: 120px;
+    height: 120px;
+
+    bottom: -70px;
+    left: -50px;
+
+    background: #74a7ff;
+    opacity: 0.04;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 991.98px) {
+
+    .evento-contacto-card {
+        padding: 35px 30px;
+    }
+
+    .evento-contacto-card h3 {
+        font-size: 1.5rem;
+    }
+
+}
+
+@media (max-width: 767.98px) {
+
+    .evento-contacto-card {
+        padding: 30px 22px;
+        border-radius: 20px;
+    }
+
+    .evento-contacto-icono {
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+    }
+
+    .evento-contacto-card h3 {
+        font-size: 1.35rem;
+    }
+
+    .evento-contacto-texto {
+        font-size: 0.95rem;
+    }
+
+    .evento-contacto-btn {
+        margin-top: 8px;
+    }
+
+}
+</style>
+
+
+
+
+
+
+<div class="evento-detalle">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+    <section class="evento-hero">
+
+        <div class="container">
+
+            <div class="evento-hero-contenido text-center">
+
+                <div class="evento-badge">
+
+                    <i class="bi bi-bookmark me-2"></i>
+
+                    {{ evento.get_tipo_display }}
+
+                </div>
+
+
+                <h1 class="evento-titulo">
+
+                    {{ evento.titulo }}
+
+                </h1>
+
+
+                {% if evento.subtitulo %}
+
+                    <p class="evento-subtitulo">
+
+                        {{ evento.subtitulo }}
+
+                    </p>
+
+                {% endif %}
+
+
+                <div class="evento-fecha">
+
+                    <i class="bi bi-calendar3"></i>
+
+                    {% if evento.fecha_fin %}
+
+                        {{ evento.fecha_inicio|date:"d/m/Y" }}
+                        —
+                        {{ evento.fecha_fin|date:"d/m/Y" }}
+
+                    {% else %}
+
+                        {{ evento.fecha_inicio|date:"d/m/Y" }}
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INTRODUCCIÓN
+    ====================================================== -->
+    <section class="evento-contenido">
+
+        <div class="container">
+
+            <div class="row align-items-center g-5">
+
+                <!-- IMAGEN -->
+
+                <div class="col-lg-6">
+
+                    {% if evento.imagen %}
+
+                        <div class="evento-imagen-wrapper">
+
+                            <img
+                                src="{{ evento.imagen.url }}"
+                                alt="{{ evento.titulo }}"
+                                class="evento-imagen"
+                            >
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- TEXTO -->
+                <div class="col-lg-6">
+
+                    <div class="evento-introduccion">
+
+                        <span class="evento-etiqueta">
+                            Sobre el evento
+                        </span>
+
+
+                        <h2>
+                            {{ evento.titulo }}
+                        </h2>
+
+
+                        {% if evento.descripcion %}
+
+                            <div class="evento-descripcion">
+
+                                {{ evento.descripcion|linebreaks }}
+
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if evento.enlace_primera_edicion or evento.enlace_segunda_edicion %}
+
+                            <div class="d-flex flex-wrap gap-3 mt-4">
+
+                                {% if evento.enlace_primera_edicion %}
+
+                                    <a
+                                        href="{{ evento.enlace_primera_edicion }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="evento-btn"
+                                    >
+                                        Conocer la Primera Edición
+                                        <i class="bi bi-arrow-up-right"></i>
+                                    </a>
+
+                                {% endif %}
+
+
+                                {% if evento.enlace_segunda_edicion %}
+
+                                    <a
+                                        href="{{ evento.enlace_segunda_edicion }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="evento-btn"
+                                    >
+                                        Conocer la Segunda Edición
+                                        <i class="bi bi-arrow-up-right"></i>
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================================
+                INFORMACIÓN DEL EVENTO
+            ====================================================== -->
+
+            <div class="evento-info-card">
+
+                <div class="evento-info-header">
+
+                    <span class="evento-etiqueta">
+                        Información
+                    </span>
+
+                    <h2>
+                        Datos del evento
+                    </h2>
+
+                </div>
+
+
+                <div class="row g-4">
+
+
+                    <!-- FECHA -->
+
+                    <div class="col-md-6">
+
+                        <div class="evento-info-item">
+
+                            <div class="evento-info-icon">
+                                <i class="bi bi-calendar-event"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="evento-info-label">
+                                    Fecha
+                                </span>
+
+                                <span class="evento-info-value">
+
+                                    {% if evento.fecha_fin %}
+
+                                        {{ evento.fecha_inicio|date:"d/m/Y" }}
+                                        —
+                                        {{ evento.fecha_fin|date:"d/m/Y" }}
+
+                                    {% else %}
+
+                                        {{ evento.fecha_inicio|date:"d/m/Y" }}
+
+                                    {% endif %}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TIPO -->
+
+                    <div class="col-md-6">
+
+                        <div class="evento-info-item">
+
+                            <div class="evento-info-icon">
+                                <i class="bi bi-bookmark"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="evento-info-label">
+                                    Tipo de evento
+                                </span>
+
+                                <span class="evento-info-value">
+                                    {{ evento.get_tipo_display }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OBJETIVO -->
+
+                    {% if evento.objetivo %}
+
+                    <div class="col-md-6">
+
+                        <div class="evento-info-item">
+
+                            <div class="evento-info-icon">
+                                <i class="bi bi-bullseye"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="evento-info-label">
+                                    Objetivo
+                                </span>
+
+                                <span class="evento-info-value">
+                                    {{ evento.objetivo }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- PARTICIPANTES -->
+
+                    {% if evento.participantes %}
+
+                    <div class="col-md-6">
+
+                        <div class="evento-info-item">
+
+                            <div class="evento-info-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="evento-info-label">
+                                    Participantes
+                                </span>
+
+                                <span class="evento-info-value">
+                                    {{ evento.participantes }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- INVERSIÓN -->
+
+                    {% if evento.inversion %}
+
+                    <div class="col-md-6">
+
+                        <div class="evento-info-item">
+
+                            <div class="evento-info-icon">
+                                <i class="bi bi-cash-coin"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="evento-info-label">
+                                    Inversión
+                                </span>
+
+                                <span class="evento-info-value">
+                                    {{ evento.inversion }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- MODALIDAD -->
+
+                    {% if evento.modalidad %}
+
+                    <div class="col-md-6">
+
+                        <div class="evento-info-item">
+
+                            <div class="evento-info-icon">
+                                <i class="bi bi-laptop"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="evento-info-label">
+                                    Modalidad
+                                </span>
+
+                                <span class="evento-info-value">
+                                    {{ evento.modalidad }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- PESO ACADÉMICO -->
+
+                    {% if evento.peso_academico %}
+
+                    <div class="col-md-6">
+
+                        <div class="evento-info-item">
+
+                            <div class="evento-info-icon">
+                                <i class="bi bi-mortarboard"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="evento-info-label">
+                                    Peso académico
+                                </span>
+
+                                <span class="evento-info-value">
+                                    {{ evento.peso_academico }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- =====================================================
+        METODOLOGÍA Y ACTIVIDADES
+    ====================================================== -->
+    {% if evento.metodologia or evento.ponencias_magistrales or evento.mesas_trabajo or evento.presentacion_ponencias %}
+
+    <section class="evento-metodologia">
+
+        <div class="container">
+
+            <!-- ENCABEZADO -->
+            <div class="evento-metodologia-header">
+
+                <div>
+
+                    <span class="evento-seccion-label">
+                        METODOLOGÍA DEL EVENTO
+                    </span>
+
+                    <h2>
+                        Metodología y actividades
+                    </h2>
+
+                </div>
+
+                <div class="evento-seccion-numero">
+                    01
+                </div>
+
+            </div>
+
+
+            <!-- METODOLOGÍA -->
+            {% if evento.metodologia %}
+
+            <div class="evento-metodologia-intro">
+
+                <div class="evento-metodologia-icono">
+
+                    <i class="bi bi-lightbulb"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Metodología
+                    </h3>
+
+                    <div class="evento-contenido-texto">
+
+                        {{ evento.metodologia|linebreaks }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- ACTIVIDADES -->
+
+            <div class="evento-actividades">
+
+                <!-- PONENCIAS MAGISTRALES -->
+
+                {% if evento.ponencias_magistrales %}
+
+                <article class="evento-actividad-card">
+
+                    <div class="evento-actividad-top">
+
+                        <span class="evento-actividad-numero">
+                            01
+                        </span>
+
+                        <div class="evento-actividad-icono">
+
+                            <i class="bi bi-mic"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>
+                        Ponencias magistrales
+                    </h3>
+
+
+                    <div class="evento-actividad-linea"></div>
+
+
+                    <div class="evento-contenido-texto">
+
+                        {{ evento.ponencias_magistrales|linebreaks }}
+
+                    </div>
+
+                </article>
+
+                {% endif %}
+
+
+
+                <!-- MESAS DE TRABAJO -->
+
+                {% if evento.mesas_trabajo %}
+
+                <article class="evento-actividad-card">
+
+                    <div class="evento-actividad-top">
+
+                        <span class="evento-actividad-numero">
+                            02
+                        </span>
+
+                        <div class="evento-actividad-icono">
+
+                            <i class="bi bi-people"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>
+                        Mesas de trabajo
+                    </h3>
+
+
+                    <div class="evento-actividad-linea"></div>
+
+
+                    <div class="evento-contenido-texto">
+
+                        {{ evento.mesas_trabajo|linebreaks }}
+
+                    </div>
+
+                </article>
+
+                {% endif %}
+
+
+
+                <!-- PRESENTACIÓN DE PONENCIAS -->
+
+                {% if evento.presentacion_ponencias %}
+
+                <article class="evento-actividad-card">
+
+                    <div class="evento-actividad-top">
+
+                        <span class="evento-actividad-numero">
+                            03
+                        </span>
+
+                        <div class="evento-actividad-icono">
+
+                            <i class="bi bi-file-earmark-text"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>
+                        Presentación de ponencias
+                    </h3>
+
+
+                    <div class="evento-actividad-linea"></div>
+
+
+                    <div class="evento-contenido-texto">
+
+                        {{ evento.presentacion_ponencias|linebreaks }}
+
+                    </div>
+
+                </article>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+
+
+
+    <!-- =====================================================
+        CERTIFICADOS
+    ====================================================== -->
+    {% if evento.enlace_certificados %}
+
+    <section class="evento-certificados">
+
+        <div class="container">
+
+            <div class="evento-certificados-card">
+
+                <div>
+
+                    <span class="evento-certificados-etiqueta">
+                        CERTIFICACIÓN
+                    </span>
+
+                    <h2>
+                        Descarga tu certificado
+                    </h2>
+
+                    <p>
+                        Accede a la plataforma para consultar y descargar
+                        tu certificado de participación.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <a
+                        href="{{ evento.enlace_certificados }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="evento-certificados-btn"
+                    >
+
+                        <i class="bi bi-award me-2"></i>
+
+                        Descargar certificados
+
+                        <i class="bi bi-arrow-up-right ms-2"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+    <!-- =====================================================
+        PROGRAMA
+    ====================================================== -->
+
+    {% if evento.programa %}
+
+    <section class="evento-programa">
+
+        <div class="container">
+
+            <div class="evento-bloque-header">
+
+                <div class="evento-bloque-titulo">
+
+                    <div>
+                        <span class="evento-seccion-label">
+                            PROGRAMA
+                        </span>
+
+                        <h2>
+                            Programa del evento
+                        </h2>
+                    </div>                    
+
+                </div>
+
+                <span class="evento-seccion-numero">
+                    02
+                </span>
+             
+            </div>
+
+
+            <div class="evento-programa-card">
+
+                <div class="evento-programa-icono">
+
+                    <i class="bi bi-list-check"></i>
+
+                </div>
+
+                <div class="evento-programa-contenido">
+
+                    {{ evento.programa|linebreaks }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+
+    <!-- =====================================================
+        CRONOGRAMA
+    ====================================================== -->
+
+    {% if evento.cronograma %}
+
+    <section class="evento-cronograma">
+
+        <div class="container">
+
+            <div class="evento-bloque-header">
+
+                <div class="evento-bloque-titulo">
+
+                    <div>
+                        <span class="evento-seccion-label">
+                            CRONOGRAMA
+                        </span>
+
+                        <h2>
+                            Cronograma del evento
+                        </h2>
+                    </div>
+
+                </div>
+
+                <span class="evento-seccion-numero">
+                    03
+                </span>
+
+            </div>
+
+
+            <div class="evento-cronograma-card">
+
+                <div class="evento-cronograma-linea"></div>
+
+                <div class="evento-cronograma-contenido">
+
+                    {{ evento.cronograma|linebreaks }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+
+    <!-- =====================================================
+        ORGANIZA / AUSPICIAN
+    ====================================================== -->
+    {% if evento.organiza or evento.auspician %}
+
+    <section class="evento-organizacion">
+
+        <div class="container">
+
+            <div class="evento-bloque-header">
+
+                <div class="evento-bloque-titulo">
+
+                    <div>
+                        <span class="evento-seccion-label">
+                            ORGANIZACIÓN
+                        </span>
+
+                        <h2>
+                            Organiza y auspician
+                        </h2>
+                    </div>
+
+                </div>
+
+                <span class="evento-seccion-numero">
+                    04
+                </span>
+
+            </div>
+
+
+            <div class="row g-4">
+
+                <!-- ORGANIZA -->
+
+                {% if evento.organiza %}
+
+                <div class="col-lg-6">
+
+                    <div class="evento-organizacion-card">
+
+                        <div class="evento-organizacion-icono">
+
+                            <i class="bi bi-building"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span class="evento-organizacion-label">
+                                ORGANIZA
+                            </span>
+
+                            <h3>
+                                Institución organizadora
+                            </h3>
+
+                            <div class="evento-seccion-contenido">
+
+                                {{ evento.organiza|linebreaks }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- AUSPICIAN -->
+
+                {% if evento.auspician %}
+
+                <div class="col-lg-6">
+
+                    <div class="evento-organizacion-card">
+
+                        <div class="evento-organizacion-icono">
+
+                            <i class="bi bi-award"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span class="evento-organizacion-label">
+                                AUSPICIAN
+                            </span>
+
+                            <h3>
+                                Instituciones auspiciadoras
+                            </h3>
+
+                            <div class="evento-seccion-contenido">
+
+                                {{ evento.auspician|linebreaks }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+
+
+    <!-- =====================================================
+        CONTACTO
+    ====================================================== -->
+    {% if evento.contacto %}
+
+    <section class="evento-contacto">
+
+        <div class="container-fluid">
+
+
+
+        <!-- TARJETA -->
+        <div class="evento-contacto-card">
+
+            <!-- DECORACIÓN -->
+            <div class="evento-contacto-decoracion evento-contacto-decoracion-1"></div>
+            <div class="evento-contacto-decoracion evento-contacto-decoracion-2"></div>
+
+            <div class="row align-items-center g-4">
+
+                <!-- ICONO -->
+                <div class="col-12 col-md-2 text-center">
+                    <div class="evento-contacto-icono">
+                        <i class="bi bi-chat-dots"></i>
+                    </div>
+                </div>
+
+                <!-- INFORMACIÓN -->
+                <div class="col-12 col-md-7 text-center text-md-start">
+
+                    <span class="evento-contacto-label">
+                        ¿TIENES ALGUNA CONSULTA?
+                    </span>
+
+                    <h3>
+                        Estamos aquí para ayudarte
+                    </h3>
+
+                    {% if evento.contacto %}
+                        <div class="evento-contacto-texto">
+                            {{ evento.contacto|linebreaks }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+                <!-- BOTÓN -->
+                {% if evento.enlace %}
+                <div class="col-12 col-md-3 text-center text-md-end">
+
+                    <a
+                        href="{{ evento.enlace }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="evento-contacto-btn"
+                    >
+                        <span>Más información</span>
+                        <i class="bi bi-arrow-up-right"></i>
+                    </a>
+
+                </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+
+
+
+
+    <!-- =====================================================
+         VOLVER
+    ====================================================== -->
+
+    <div class="evento-volver">
+
+        <div class="container">
+
+            <a href="/">
+
+                <i class="bi bi-arrow-left me-2"></i>
+
+                Volver a eventos
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

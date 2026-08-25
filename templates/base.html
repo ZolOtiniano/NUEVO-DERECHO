@@ -436,95 +436,84 @@
     <!-- =========================
         NAVBAR
     ========================= -->
-    <nav class="navbar navbar-expand-xl navbar-dark bg-success sticky-top shadow-sm">
 
-        <div class="container position-relative">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-success sticky-top shadow-sm  ">
+        <div class="container position-relative px-0">
 
             <!-- Logo -->
             <a class="navbar-brand logo-facultad" href="{% url 'home' %}">
-
                 {% if navbar.logo %}
-                <img src="{{ navbar.logo.url }}" alt="Logo Facultad" class="logo-img">
+                    <img src="{{ navbar.logo.url }}" alt="Logo Facultad" class="logo-img">
                 {% else %}
-                Facultad de Derecho
+                    Facultad de Derecho
                 {% endif %}
-
             </a>
 
-
             <!-- Botón móvil -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal">
-
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarPrincipal">
                 <span class="navbar-toggler-icon"></span>
-
             </button>
 
-
-            <!-- Menú centrado -->
+            <!-- Menú -->
             <div class="collapse navbar-collapse" id="navbarPrincipal">
 
-
-                <ul class="navbar-nav ms-auto">
-
+                <ul class="navbar-nav">
 
                     {% for item in menu %}
 
+                        {% if item.submenus.exists %}
 
-                    {% if item.submenus.exists %}
+                            <li class="nav-item dropdown mx-1">
 
-                    <li class="nav-item dropdown mx-1">
-
-                        <a class="nav-link dropdown-toggle fw-semibold px-3" href="{{ item.get_url }}"
-                            data-bs-toggle="dropdown">
-
-                            {{ item.nombre }}
-
-                        </a>
-
-
-                        <ul class="dropdown-menu shadow border-0 rounded-3">
-
-                            {% for submenu in item.submenus.all %}
-
-                            <li>
-                                <a class="dropdown-item" href="{{ submenu.get_url }}">
-                                    {{ submenu.nombre }}
+                                <a class="nav-link dropdown-toggle fw-semibold px-3"
+                                href="{{ item.get_url }}"
+                                data-bs-toggle="dropdown">
+                                    {{ item.nombre }}
                                 </a>
+
+                                <ul class="dropdown-menu shadow border-0 rounded-3">
+
+                                    {% for submenu in item.submenus.all %}
+
+                                        <li>
+                                            <a class="dropdown-item"
+                                            href="{{ submenu.get_url }}"
+                                            {% if '.pdf' in submenu.get_url|lower %}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            {% endif %}>
+                                                {{ submenu.nombre }}
+                                            </a>
+                                        </li>
+
+                                    {% endfor %}
+
+                                </ul>
+
                             </li>
 
-                            {% endfor %}
+                        {% else %}
 
-                        </ul>
+                            <li class="nav-item mx-1">
 
-                    </li>
+                                <a class="nav-link fw-semibold px-3"
+                                href="{{ item.get_url }}">
+                                    {{ item.nombre }}
+                                </a>
 
+                            </li>
 
-                    {% else %}
-
-                    <li class="nav-item mx-1">
-
-                        <a class="nav-link fw-semibold px-3" href="{{ item.get_url }}">
-
-                            {{ item.nombre }}
-
-                        </a>
-
-                    </li>
-
-
-                    {% endif %}
-
+                        {% endif %}
 
                     {% endfor %}
 
-
                 </ul>
 
-
             </div>
-
         </div>
-
     </nav>
 
 

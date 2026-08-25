@@ -7,10 +7,6 @@ from .models import (
     Seccion,
     Bienvenida,
     Caracteristica,
-    Autoridad,
-    Documento,
-    Noticia,
-    Evento,
     Galeria,
 )
 
@@ -186,27 +182,7 @@ class CaracteristicaAdmin(admin.ModelAdmin):
 # AUTORIDAD / DECANO
 # =========================
 
-@admin.register(Autoridad)
-class AutoridadAdmin(admin.ModelAdmin):
 
-    list_display = (
-        "nombre",
-        "cargo",
-        "gestion",
-        "activo",
-        "orden",
-    )
-
-
-    list_editable = (
-        "activo",
-        "orden",
-    )
-
-
-    ordering = (
-        "orden",
-    )
 
 
 
@@ -214,52 +190,12 @@ class AutoridadAdmin(admin.ModelAdmin):
 # DOCUMENTOS ACADÉMICOS
 # =========================
 
-@admin.register(Documento)
-class DocumentoAdmin(admin.ModelAdmin):
-
-    list_display = (
-        "titulo",
-        "orden",
-        "activo",
-    )
-
-
-    list_editable = (
-        "orden",
-        "activo",
-    )
-
-
-    ordering = (
-        "orden",
-    )
-
 
 
 # =========================
 # NOTICIAS
 # =========================
 
-@admin.register(Noticia)
-class NoticiaAdmin(admin.ModelAdmin):
-
-    list_display = (
-        "titulo",
-        "fecha",
-        "orden",
-        "activo",
-    )
-
-
-    list_editable = (
-        "orden",
-        "activo",
-    )
-
-
-    ordering = (
-        "orden",
-    )
 
 
 
@@ -267,26 +203,6 @@ class NoticiaAdmin(admin.ModelAdmin):
 # EVENTOS
 # =========================
 
-@admin.register(Evento)
-class EventoAdmin(admin.ModelAdmin):
-
-    list_display = (
-        "titulo",
-        "fecha",
-        "orden",
-        "activo",
-    )
-
-
-    list_editable = (
-        "orden",
-        "activo",
-    )
-
-
-    ordering = (
-        "orden",
-    )
 
 
 

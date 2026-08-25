@@ -15,7 +15,11 @@ INSTALLED_APPS = [
     "apps.home",
     "apps.paginas",
 
+    "apps.autoridades",
+    "apps.documentos",
+    "apps.noticias",
     "apps.eventos",
+    "apps.galeria",
 ]
 
 MIDDLEWARE = [

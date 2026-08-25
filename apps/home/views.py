@@ -1,21 +1,23 @@
-from django.shortcuts import render
-
 from .models import (
     Hero,
     Seccion,
     Bienvenida,
     Caracteristica,
-    Autoridad,
-    Documento,
-    Noticia,
-    Galeria,
 )
 
-from apps.eventos.models import Evento
+from django.shortcuts import render
 
+from apps.autoridades.models import Autoridad
+from apps.documentos.models import Documento
+from apps.eventos.models import Evento
+from apps.noticias.models import Noticia
+from apps.galeria.models import Galeria
 
 def index(request):
 
+    # =====================================================
+    # SECCIONES
+    # =====================================================
     secciones = {
         seccion.nombre: seccion
         for seccion in Seccion.objects.filter(activo=True)
@@ -24,7 +26,6 @@ def index(request):
     # =====================================================
     # EVENTOS
     # =====================================================
-
     eventos = Evento.objects.filter(
         activo=True
     ).order_by(
@@ -36,62 +37,91 @@ def index(request):
         for i in range(0, len(eventos), 3)
     ]
 
-
+    # =====================================================
+    # CONTEXT
+    # =====================================================
     context = {
 
-        # Hero
+        # -------------------------------------------------
+        # HERO
+        # -------------------------------------------------
+
         "heroes": Hero.objects.filter(
             activo=True
         ).order_by(
             "orden"
         ),
 
-        # Bienvenida
+        # -------------------------------------------------
+        # BIENVENIDA
+        # -------------------------------------------------
+
         "bienvenida": Bienvenida.objects.first(),
 
-        # Secciones
+        # -------------------------------------------------
+        # SECCIONES
+        # -------------------------------------------------
+
         "secciones": secciones,
 
-        # Características
+        # -------------------------------------------------
+        # CARACTERÍSTICAS
+        # -------------------------------------------------
+
         "caracteristicas": Caracteristica.objects.filter(
             activo=True
         ).order_by(
             "orden"
         ),
 
-        # Decano
+        # -------------------------------------------------
+        # AUTORIDADES
+        # -------------------------------------------------
+
         "decano": Autoridad.objects.filter(
             activo=True
         ).order_by(
             "orden"
         ).first(),
 
-        # Documentos
+        # -------------------------------------------------
+        # DOCUMENTOS
+        # -------------------------------------------------
+
         "documentos": Documento.objects.filter(
             activo=True
         ).order_by(
             "orden"
         ),
 
-        # Eventos
+        # -------------------------------------------------
+        # EVENTOS
+        # -------------------------------------------------
+
         "eventos": eventos,
+
         "eventos_grupos": eventos_grupos,
 
-        # Noticias
+        # -------------------------------------------------
+        # NOTICIAS
+        # -------------------------------------------------
+
         "noticias": Noticia.objects.filter(
             activo=True
         ).order_by(
             "orden"
         ),
 
-        # Galería
+        # -------------------------------------------------
+        # GALERÍA
+        # -------------------------------------------------
+
         "galeria": Galeria.objects.filter(
             activo=True
         ).order_by(
             "orden"
         )[:8],
     }
-
 
     return render(
         request,
@@ -110,7 +140,7 @@ def autoridades(request):
 
     return render(
         request,
-        "home/autoridades.html",
+        "autoridades/autoridades.html",
         {
             "autoridades": autoridades
         }

@@ -1,31 +1,33 @@
 <section class="eventos-section">
 
-    <div class="container-fluid px-0">
+    <div class="container px-0">
 
-        <!-- =====================================================
-             TÍTULO
-        ====================================================== -->
 
-        <div class="eventos-header text-center">
+        <!-- Encabezado -->
+        <div class="text-center mb-5">
 
-            <h2>
-                Congresos y Seminarios
+            <span class="text-success fw-semibold text-uppercase">
+                {{ secciones.eventos.subtitulo }}
+            </span>
+
+            <h2 class="display-5 fw-bold mt-3">
+                {{ secciones.eventos.titulo }}
             </h2>
+
+            <p class="text-muted col-lg-7 mx-auto fs-5">
+                {{ secciones.eventos.descripcion }}
+            </p>
 
         </div>
 
 
+
+        
+
         <!-- =====================================================
              CARRUSEL
         ====================================================== -->
-        <div
-            id="eventosCarousel"
-            class="carousel slide"
-            data-bs-ride="carousel"
-            data-bs-interval="4000"
-            data-bs-wrap="true"
-            
-        >
+        <div id="eventosCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" data-bs-wrap="true">
 
             <div class="carousel-inner">
 
@@ -80,27 +82,10 @@
                                         <!-- =====================================================
                                              BOTÓN
                                         ====================================================== -->
-
                                         <div class="evento-boton">
-
-                                            {% if evento.enlace %}
-
-                                                <a
-                                                    href="{{ evento.enlace }}"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                >
-                                                    Más información
-                                                </a>
-
-                                            {% else %}
-
-                                                <a href="#">
-                                                    Más información
-                                                </a>
-
-                                            {% endif %}
-
+                                            <a href="{% url 'eventos:detalle' evento.pk %}">
+                                                Más información
+                                            </a>
                                         </div>
 
                                     </div>
@@ -157,10 +142,9 @@
             {% endif %}
 
         </div>
-
     </div>
-
 </section>
+
 
 
 <style>
@@ -496,6 +480,8 @@
 
 }
 </style>
+
+
 
 
 <script>

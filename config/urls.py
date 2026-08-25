@@ -9,6 +9,7 @@ urlpatterns = [
 
     path("", include("apps.home.urls")),
 
+    path("eventos/", include("apps.eventos.urls")),
 
     ## New XD
     path("", include("apps.paginas.urls")),  

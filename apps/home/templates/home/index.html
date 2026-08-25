@@ -6,6 +6,8 @@ Inicio
 
 {% block content %}
 
+
+<!-- APP = HOME -->
 <section class="section-hero">
     {% include "home/sections/1hero.html" %}
 </section>
@@ -17,30 +19,32 @@ Inicio
 <section class="home-section">
     {% include "home/sections/3caracteristicas.html" %}
 </section>
-
-<section class="home-section">
-    {% include "home/sections/4decano.html" %}
-</section>
-
-<section class="home-section">
-    {% include "home/sections/5documentos.html" %}
-</section>
+<!-- END APP = HOME -->
 
 
-<section class="home-section">
-    {% include "home/sections/eventos.html" %}
-</section>
-
-
-<section class="home-section">
-    {% include "home/sections/6noticias.html" %}
-</section>
 
 
 
 <section class="home-section">
-    {% include "home/sections/8galeria.html" %}
+    {% include "autoridades/sections/decano.html" %}
 </section>
+
+<section class="home-section">
+    {% include "documentos/sections/documentos_home.html" %}
+</section>
+
+<section class="home-section">
+    {% include "eventos/sections/eventos_home.html" %}
+</section>
+
+<section class="home-section">
+    {% include "noticias/sections/noticias_home.html" %}
+</section>
+
+<section class="home-section">
+    {% include "galeria/sections/galeria_home.html" %}
+</section>
+
 
 {% endblock %}
 
