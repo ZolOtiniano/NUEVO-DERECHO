@@ -1,39 +1,54 @@
 {% load static %}
+
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
-    <!-- Meta -->
+    <!-- =========================
+        CONFIGURACIÓN
+    ========================== -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Monoline - Design Agency HTML Template">
-    <meta name="keywords"
-        content="agency, business, corporate, creative, html5, modern, multipurpose, One Page, parallax, startup ">
-    <!-- SITE TITLE -->
+
+    <meta name="description" content="Facultad de Derecho y Ciencias Políticas">
+    <meta name="keywords" content="derecho, ciencias políticas, universidad, facultad">
 
     <title>{% block title %}Facultad de Derecho{% endblock %}</title>
 
+
+    <!-- =========================
+        BOOTSTRAP
+    ========================== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-
-    <!-- Google Font -->
+    <!-- =========================
+        GOOGLE FONTS
+    ========================== -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600">
 
-    <STYLE>
-        /* Estilo general */
 
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+
+
+    <!-- =========================
+        ESTILOS
+    ========================== -->
+    <style>
+        /* =========================
+        GENERAL
+        ========================== */
         .home-section {
             padding: 20px 0;
             position: relative;
         }
-
 
         .home-section:not(:last-child)::after {
             content: "";
@@ -42,60 +57,240 @@
             left: 15%;
             width: 70%;
             height: 1px;
-            background: linear-gradient(to right,
-                    transparent,
-                    #cccccc,
-                    transparent);
+            background: linear-gradient(
+                to right,
+                transparent,
+                #cccccc,
+                transparent
+            );
+        }
+
+
+        /* =========================================
+        BARRA SUPERIOR - ACCESOS RÁPIDOS
+        ========================================= */
+        .top-bar {
+            background: #111111;
+            color: #ffffff;
+            width: 100%;
+        }
+
+        .top-bar-links {
+            min-height: 38px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .top-bar-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .top-bar-links a i {
+            margin-right: 5px;
+        }
+
+        .top-bar-links a:hover {
+            color: #b7e4c7;
+        }
+
+
+        /* =========================================
+        MÓVIL
+        ========================================= */
+        @media (max-width: 1199px) {
+
+            .top-bar-links {
+                justify-content: center;
+                gap: 15px;
+                flex-wrap: wrap;
+                padding: 7px 0;
+            }
+
+            .top-bar-links a {
+                font-size: 12px;
+            }
+
+        }
+
+
+        /* =========================
+        NAVBAR
+        ========================== */
+        .navbar {
+            padding: .5rem 0;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
         }
 
 
 
-
-
-
-
-
-
-
-        /* MENU SE VE AUTOMANTICAMENTE */
-        .dropdown-menu {
-            margin-top: 0;
+        .logo-facultad {
+            margin-right: 25px;
         }
 
+        .logo-facultad img {
+            max-height: 55px;
+            width: auto;
+            display: block;
+        }
+
+
+        .navbar-nav .nav-link {
+            font-size: .95rem;
+            font-weight: 600;
+            padding: .7rem .9rem;
+            border-radius: .5rem;
+            transition: .3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background: rgba(255, 255, 255, .15);
+        }
+
+
+        /* =========================
+        DROPDOWN
+        ========================== */
         .navbar .dropdown-menu {
-            transition: all .2s ease;
-        }
-
-        .navbar .dropdown-menu {
+            min-width: 220px;
             margin-top: -2px;
+            border: 0;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+            overflow: hidden;
         }
 
+        .navbar .dropdown-item {
+            color: #333333;
+            padding: .7rem 1rem;
+            font-weight: 500;
+            transition: all .25s ease;
+        }
 
+        /* Hover del SUBMENÚ */
+
+        .navbar .dropdown-item:hover,
+        .navbar .dropdown-item:focus {
+            color: #ffffff;
+            background: #198754;
+            padding-left: 1.3rem;
+        }
+
+/* =========================================
+   TÍTULO FIJO EN NAVBAR MÓVIL
+   ========================================= */
+.navbar-mobile-title {
+    display: none;
+}
+
+@media (max-width: 1199px) {
+
+    /* NAVBAR CON ALTURA FIJA */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+    /* TÍTULO */
+    .navbar-mobile-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+
+        left: 50%;
+        top: 0;
+
+        width: max-content;
+        height: 70px;
+
+        transform: translateX(-50%);
+
+        color: #D4AF37;
+        font-family: "Cinzel", serif;
+
+        font-size: 18px;
+        font-weight: 600;
+
+        line-height: 1.15;
+        letter-spacing: 0.5px;
+
+        text-align: center;
+        white-space: nowrap;
+
+        pointer-events: none;
+
+        z-index: 10;
+
+        text-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.45);
+    }
+
+    .navbar-mobile-title span {
+        display: block;
+    }
+
+    /* BOTÓN ☰ */
+    .navbar-toggler {
+        position: relative;
+        z-index: 20;
+    }
+
+    /* =====================================
+       MENÚ MÓVIL
+       NO DEBE AGRANDAR EL NAVBAR
+       ===================================== */
+
+    .navbar-collapse {
+        position: absolute;
+
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+
+        background: #198754;
+
+        padding: 1rem;
+
+        margin-top: 0;
+
+        border-radius: 0 0 12px 12px;
+
+        z-index: 1000;
+    }
+}
 
 
 
 
         /* =========================
         FOOTER
-        ========================= */
-
+        ========================== */
         footer {
+            background: #000000;
+        }
+
+        .footer-institucional {
             background: #000000;
         }
 
         footer h4,
         footer h5 {
-            color: #fff;
-        }
-
-        footer a {
-            color: #d6d6d6;
-            transition: .3s;
-        }
-
-        footer a:hover {
-            color: #198754;
-            text-decoration: none;
+            color: #ffffff;
         }
 
         footer p,
@@ -105,698 +300,1718 @@
             line-height: 1.8;
         }
 
+        footer a {
+            color: #d6d6d6;
+            transition: .3s ease;
+        }
+
+        footer a:hover {
+            color: #198754;
+            text-decoration: none;
+        }
+
         footer hr {
             opacity: .2;
         }
 
 
         /* =========================
-        FOOTER INSTITUCIONAL
-        ========================= */
-        .footer-institucional {
-
-            background: #000000;
-
+        FOOTER - LISTAS
+        ========================== */
+        .footer-col {
+            padding-top: 70px;
         }
-
-
-
-        .footer-institucional h4,
-        .footer-institucional h5 {
-
-            color: #ffffff;
-
-        }
-
-
-
-        .footer-link {
-
-            color: #bdbdbd;
-            text-decoration: none;
-            transition: .3s;
-
-        }
-
-
-        .footer-link:hover {
-
-            color: #198754;
-
-        }
-
-
 
         .footer-list li {
-
             color: #bdbdbd;
             margin-bottom: 18px;
             line-height: 1.6;
-
         }
-
-
 
         .footer-list i {
-
             color: #198754;
             margin-right: 8px;
-
         }
 
+        .footer-link {
+            color: #bdbdbd;
+            text-decoration: none;
+            transition: .3s ease;
+        }
 
+        .footer-link:hover {
+            color: #198754;
+        }
 
         .footer-divider {
-
             border-color: #333;
             opacity: 1;
-
         }
 
 
-
-
-
-        /* Redes sociales */
-
+        /* =========================
+        REDES SOCIALES
+        ========================== */
         .social-icon {
-
             width: 42px;
             height: 42px;
-
             display: inline-flex;
-
             align-items: center;
             justify-content: center;
-
             border-radius: 50%;
-
             background: #111;
-
-            color: white;
-
+            color: #ffffff;
             margin-right: 8px;
-
             font-size: 20px;
-
-            transition: .3s;
-
+            text-decoration: none;
+            transition: .3s ease;
         }
-
-
 
         .social-icon:hover {
-
             background: #198754;
-
+            color: #ffffff;
             transform: translateY(-4px);
-
         }
 
 
-
+        /* =========================
+        EFECTO TÍTULO FOOTER
+        ========================== */
         .footer-neon {
-
             color: #39ff14;
-
             text-shadow:
                 0 0 5px #39ff14,
                 0 0 10px #39ff14,
                 0 0 20px #39ff14,
                 0 0 40px #39ff14;
-
             letter-spacing: 1px;
-
         }
-
-
-        .footer-col {
-            padding-top: 70px;
-        }
-
-
-
-
-
-
-
-
-
 
 
         /* =========================
-   NAVBAR RESPONSIVE
-========================= */
-
-        .navbar {
-            padding: .5rem 0;
-        }
-
-
-        /* Logo */
-
-        .logo-facultad img {
-            max-height: 55px;
-            width: auto;
-        }
-
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-        }
-
-
-        /* Links */
-
-        .navbar-nav .nav-link {
-
-            font-size: .95rem;
-            font-weight: 600;
-
-            padding: .7rem .9rem;
-
-            border-radius: .5rem;
-
-            transition: .3s;
-
-        }
-
-
-        .navbar-nav .nav-link:hover {
-
-            background: rgba(255, 255, 255, .15);
-
-        }
-
-
-
-        /* Dropdown escritorio */
-
-        .dropdown-menu {
-
-            min-width: 220px;
-
-            border-radius: 12px;
-
-            border: 0;
-
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
-
-        }
-
-
-
-        /* =========================
- TABLET
-========================= */
-
-        @media(max-width:1199px) {
-
+        TABLET
+        Bootstrap XL
+        ========================== */
+        @media (max-width: 1199px) {
 
             .navbar-nav .nav-link {
-
-                font-size: .9rem;
-
-                padding: .6rem .7rem;
-
-            }
-
-
-        }
-
-
-
-        /* =========================
- MOVIL
-========================= */
-
-        @media(max-width:991px) {
-
-
-            .navbar-collapse {
-
-                background: #198754;
-
-                padding: 1rem;
-
-                margin-top: 1rem;
-
-                border-radius: 12px;
-
-            }
-
-
-            .navbar-nav {
-
-                width: 100%;
-
-            }
-
-
-
-            .navbar-nav .nav-item {
-
-                width: 100%;
-
-                margin: 0;
-
-            }
-
-
-
-            .navbar-nav .nav-link {
-
-                padding: .8rem 1rem;
-
-            }
-
-
-
-            /* Dropdown movil */
-
-            .dropdown-menu {
-
-                width: 100%;
-
-                background: #157347;
-
-                box-shadow: none;
-
-                border-radius: 8px;
-
-            }
-
-
-            .dropdown-item {
-
-                color: white;
-
-                padding: .7rem 1rem;
-
-            }
-
-
-            .dropdown-item:hover {
-
-                background: white;
-
-                color: #198754;
-
-            }
-
-
-
-        }
-
-
-
-
-
-        @media (max-width:1200px) {
-
-            .navbar-nav .nav-link {
-
                 font-size: .85rem;
-                padding: .5rem .6rem;
-
+                padding: .6rem .7rem;
             }
 
         }
-    </STYLE>
 
+
+        /* =========================
+        MÓVIL / TABLET
+        ========================== */
+     @media (max-width: 991px) {
+
+    .navbar-collapse {
+        background: #198754;
+        padding: 1rem;
+        margin-top: 0;
+        border-radius: 0 0 12px 12px;
+    }
+
+    .navbar-nav {
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%;
+        margin: 0;
+    }
+
+    .navbar-nav .nav-link {
+        padding: .8rem 1rem;
+    }
+
+    /* DROPDOWN MÓVIL */
+
+    .navbar .dropdown-menu {
+        width: 100%;
+        margin-top: 0;
+        background: #ffffff;
+        box-shadow: none;
+        border-radius: 8px;
+    }
+
+    .navbar .dropdown-item {
+        color: #333333;
+        padding: .7rem 1rem;
+    }
+
+    .navbar .dropdown-item:hover,
+    .navbar .dropdown-item:focus {
+        background: #198754;
+        color: #ffffff;
+        padding-left: 1.3rem;
+    }
+}
+
+        /* =========================
+        MÓVIL PEQUEÑO
+        ========================== */
+        @media (max-width: 575px) {
+
+            .logo-facultad img {
+                max-height: 48px;
+            }
+
+            .footer-col {
+                padding-top: 30px;
+            }
+
+        }
+
+    </style>
 </head>
-
-
 
 
 
 <body>
 
-    <!-- =========================
-        NAVBAR
-    ========================= -->
+<!-- BARRA DE ACCESOS RÁPIDOS -->
+<div class="top-bar">
+    <div class="container-fluid px-3">
 
-    <nav class="navbar navbar-expand-xl navbar-dark bg-success sticky-top shadow-sm  ">
-        <div class="container position-relative px-0">
+        <div class="top-bar-links">
 
-            <!-- Logo -->
-            <a class="navbar-brand logo-facultad" href="{% url 'home' %}">
-                {% if navbar.logo %}
-                    <img src="{{ navbar.logo.url }}" alt="Logo Facultad" class="logo-img">
-                {% else %}
-                    Facultad de Derecho
-                {% endif %}
+            <!-- <a href="#">
+                <i class="bi bi-mortarboard"></i>
+                Aula Virtual
+            </a> -->
+
+
+            <a href="https://resoluciones.unitru.edu.pe/"
+            target="_blank"
+            rel="noopener noreferrer">
+                <i class="bi bi-file-earmark-text"></i>
+                Buscador De Actas y Resoluciones
             </a>
 
-            <!-- Botón móvil -->
-            <button class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarPrincipal">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a href="https://portaldocente.unitru.edu.pe/"
+            target="_blank"
+            rel="noopener noreferrer">
+                <i class="bi bi-person-badge"></i>
+                Portal Docente
+            </a>
 
-            <!-- Menú -->
-            <div class="collapse navbar-collapse" id="navbarPrincipal">
+        </div>
 
-                <ul class="navbar-nav">
+    </div>
+</div>
 
-                    {% for item in menu %}
 
-                        {% if item.submenus.exists %}
 
-                            <li class="nav-item dropdown mx-1">
 
-                                <a class="nav-link dropdown-toggle fw-semibold px-3"
+<!-- =========================
+     NAVBAR
+========================== -->
+<nav class="navbar navbar-expand-xl navbar-dark bg-success sticky-top shadow-sm">
+
+    <div class="container-fluid px-0">
+
+        <!-- =========================
+             LOGO
+        ========================== -->
+        <a class="navbar-brand logo-facultad ms-3" href="{% url 'home' %}">
+            {% if navbar.logo %}
+                <img src="{{ navbar.logo.url }}" alt="Logo Facultad" class="logo-img">
+
+            {% else %}
+
+                Facultad de Derecho
+
+            {% endif %}
+        </a>
+
+
+        <!-- TÍTULO SOLO EN CELULAR -->
+        <div class="navbar-mobile-title">
+            <span>Facultad de Derecho</span>
+            <span>y CC.PP.</span>
+        </div>
+
+
+        <!-- =========================
+             BOTÓN MÓVIL
+        ========================== -->
+        <button
+            class="navbar-toggler me-3"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarPrincipal"
+            aria-controls="navbarPrincipal"
+            aria-expanded="false"
+            aria-label="Abrir menú"
+        >
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <!-- =========================
+             MENÚ
+        ========================== -->
+        <div class="collapse navbar-collapse" id="navbarPrincipal">
+
+            <ul class="navbar-nav">
+
+                {% for item in menu %}
+
+                    {% if item.submenus.exists %}
+
+                        <!-- Menú con submenús -->
+                        <li class="nav-item dropdown mx-1">
+
+                            <a
+                                class="nav-link dropdown-toggle fw-semibold px-3"
                                 href="{{ item.get_url }}"
-                                data-bs-toggle="dropdown">
-                                    {{ item.nombre }}
-                                </a>
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
 
-                                <ul class="dropdown-menu shadow border-0 rounded-3">
+                                {{ item.nombre }}
 
-                                    {% for submenu in item.submenus.all %}
+                            </a>
 
-                                        <li>
-                                            <a class="dropdown-item"
+
+                            <ul class="dropdown-menu shadow border-0 rounded-3">
+
+                                {% for submenu in item.submenus.all %}
+
+                                    <li>
+
+                                        <a
+                                            class="dropdown-item"
                                             href="{{ submenu.get_url }}"
+
                                             {% if '.pdf' in submenu.get_url|lower %}
+
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                            {% endif %}>
-                                                {{ submenu.nombre }}
-                                            </a>
-                                        </li>
 
-                                    {% endfor %}
+                                            {% endif %}
+                                        >
 
-                                </ul>
+                                            {{ submenu.nombre }}
 
-                            </li>
+                                        </a>
 
-                        {% else %}
+                                    </li>
 
-                            <li class="nav-item mx-1">
+                                {% endfor %}
 
-                                <a class="nav-link fw-semibold px-3"
-                                href="{{ item.get_url }}">
-                                    {{ item.nombre }}
-                                </a>
+                            </ul>
 
-                            </li>
+                        </li>
 
+
+              {% else %}
+
+                <!-- Menú normal -->
+                <li class="nav-item mx-1">
+
+                    {% if item.nombre == 'Libro de Reclamaciones' %}
+
+                        <a
+                            class="nav-link fw-semibold px-3 btn-reclamaciones"
+                            href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalReclamaciones"
+                        >
+                            {{ item.nombre }}
+                        </a>
+
+                    {% else %}
+
+                        <a
+                            class="nav-link fw-semibold px-3"
+                            href="{{ item.get_url }}"
+                        >
+                            {{ item.nombre }}
+                        </a>
+
+                    {% endif %}
+
+                </li>
+
+            {% endif %}
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<style>
+.btn-reclamaciones {
+    background-color: #d4af37;
+    color: #4a2f00 !important;
+    border-radius: 6px;
+    padding: 8px 14px !important;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.navbar-nav .nav-link.btn-reclamaciones:hover {
+    background-color: #f0c94a !important;
+    color: #3d2600 !important;
+    transform: translateY(-1px);
+}
+</style>
+
+
+
+<!-- Modal -->
+<!-- =====================================================
+     MODAL - LIBRO DE RECLAMACIONES
+     ===================================================== -->
+
+<div class="modal fade" id="modalReclamaciones" tabindex="-1" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered modal-reclamaciones">
+
+        <div class="modal-content reclamaciones-modal">
+
+            <!-- HEADER -->
+            <div class="reclamaciones-header">
+
+                <div class="reclamaciones-brand">
+
+                    <div class="reclamaciones-logo">
+                        {% if navbar.logo %}
+                            <img src="{{ navbar.logo.url }}" alt="Logo UNT">
                         {% endif %}
+                    </div>
 
-                    {% endfor %}
+                    <div class="reclamaciones-brand-text">
+                        <div class="reclamaciones-facultad">
+                            Libro de Reclamaciones
+                        </div>
 
-                </ul>
+                        <div class="reclamaciones-universidad">
+                            Tu opinión es importante para nosotros.
+                        </div>
+                    </div>
+
+                </div>
+
+                <button type="button"
+                        class="reclamaciones-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Cerrar">
+                    <i class="bi bi-x-lg"></i>
+                </button>
 
             </div>
+
+
+            <!-- CUERPO -->
+            <div class="reclamaciones-body">
+
+            
+
+
+                <!-- FORMULARIO -->
+                <form method="post"
+                      enctype="multipart/form-data"
+                      action="#">
+
+                    {% csrf_token %}
+
+
+                    <!-- FILA 1 -->
+                    <div class="row g-3">
+
+    <!-- TIPO DE USUARIO -->
+    <div class="col-lg-4 col-md-6">
+
+        <label class="reclamaciones-label">
+            <i class="bi bi-person-badge"></i>
+            Tipo de usuario
+        </label>
+
+        <div class="reclamaciones-input">
+
+            <i class="bi bi-person"></i>
+
+            <select name="tipo_usuario" required>
+                <option value="">Seleccionar usuario</option>
+                <option>Alumno</option>
+                <option>Docente</option>
+                <option>Administrativo</option>
+                <option>Público general</option>
+            </select>
+
+            <i class="bi bi-chevron-down input-arrow"></i>
+
         </div>
-    </nav>
+
+    </div>
+
+
+    <!-- ESCUELA -->
+    <div class="col-lg-4 col-md-6">
+
+        <label class="reclamaciones-label">
+            <i class="bi bi-mortarboard"></i>
+            Escuela
+        </label>
+
+        <div class="reclamaciones-input">
+
+            <i class="bi bi-building"></i>
+
+            <select name="escuela" required>
+
+                <option value="derecho">
+                    Escuela de Derecho
+                </option>
+
+                <option value="ciencias_politicas">
+                    Escuela de Ciencias Políticas
+                </option>
+
+            </select>
+
+            <i class="bi bi-chevron-down input-arrow"></i>
+
+        </div>
+
+    </div>
+
+
+    <!-- TIPO DE REPORTE -->
+    <div class="col-lg-4 col-md-6">
+
+        <label class="reclamaciones-label">
+            <i class="bi bi-exclamation-circle"></i>
+            Tipo de reporte
+        </label>
+
+        <div class="reclamaciones-input">
+
+            <i class="bi bi-file-earmark-text"></i>
+
+            <select name="tipo_reporte" required>
+
+                <option value="">
+                    Seleccionar reporte
+                </option>
+
+                <option>Queja</option>
+                <option>Reclamo</option>
+                <option>Sugerencia</option>
+
+            </select>
+
+            <i class="bi bi-chevron-down input-arrow"></i>
+
+        </div>
+
+    </div>
+
+        <!-- NOMBRE -->
+    <div class="col-lg-6">
+
+        <label class="reclamaciones-label">
+            <i class="bi bi-person-vcard"></i>
+            Nombre completo
+        </label>
+
+        <div class="reclamaciones-input">
+
+            <i class="bi bi-person"></i>
+
+            <input type="text"
+                   name="nombre"
+                   placeholder="Nombre y apellidos"
+                   required>
+
+        </div>
+
+    </div>
+
+
+    <!-- CORREO -->
+    <div class="col-lg-6">
+
+        <label class="reclamaciones-label">
+            <i class="bi bi-envelope"></i>
+            Correo electrónico
+        </label>
+
+        <div class="reclamaciones-input">
+
+            <i class="bi bi-envelope"></i>
+
+            <input type="email"
+                   name="correo"
+                   placeholder="nombre@unitru.edu.pe"
+                   required>
+
+        </div>
+
+    </div>
+
+
+    <!-- DESCRIPCIÓN -->
+    <div class="col-12">
+
+        <label class="reclamaciones-label">
+            <i class="bi bi-chat-left-text"></i>
+            Descripción
+        </label>
+
+        <div class="reclamaciones-textarea">
+
+            <i class="bi bi-pencil"></i>
+
+            <textarea name="descripcion"
+                      rows="3"
+                      placeholder="Describe el motivo de tu queja, reclamo o sugerencia..."
+                      required></textarea>
+
+        </div>
+
+    </div>
+
+
+        <!-- EVIDENCIA -->
+    <div class="col-lg-6">
+
+        <label class="reclamaciones-label">
+            <i class="bi bi-paperclip"></i>
+            Evidencia
+            <span>(opcional)</span>
+        </label>
+
+        <label class="reclamaciones-file">
+
+            <i class="bi bi-cloud-arrow-up"></i>
+
+            <div>
+                <strong>
+                    Adjuntar documento o imagen
+                </strong>
+
+                <small>
+                    JPG, PNG o PDF
+                </small>
+            </div>
+
+            <input type="file"
+                   name="evidencia"
+                   accept="image/*,.pdf">
+
+            <span class="file-button">
+                Seleccionar
+            </span>
+
+        </label>
+
+    </div>
+
+
+    <!-- DECLARACIÓN -->
+    <div class="col-lg-6">
+
+        <label class="reclamaciones-label">
+            <i class="bi bi-shield-check"></i>
+            Declaración
+        </label>
+
+        <div class="reclamaciones-declaracion h-100">
+
+            <input class="form-check-input"
+                   type="checkbox"
+                   required
+                   id="declaracionJurada">
+
+            <label for="declaracionJurada">
+
+                <span class="check-icon">
+                    <i class="bi bi-check-lg"></i>
+                </span>
+
+                <span>
+                    Declaro que la información proporcionada
+                    es veraz y corresponde a los hechos descritos.
+                </span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 
 
+                    <!-- DECLARACIÓN -->
+                    <div class="reclamaciones-declaracion">
 
+                        <input class="form-check-input"
+                               type="checkbox"
+                               required
+                               id="declaracionJurada">
 
+                        <label for="declaracionJurada">
 
+                            <span class="check-icon">
+                                <i class="bi bi-check-lg"></i>
+                            </span>
 
-    <!-- =========================
-         CONTENIDO
-    ========================= -->
+                            <span>
+                                Declaro que la información proporcionada
+                                es veraz y corresponde a los hechos descritos.
+                            </span>
 
-    {% block content %}
-    {% endblock %}
-
-
-
-
-
-
-
-
-    <!-- =========================
-        FOOTER
-    ========================= -->
-
-    <footer class="footer-institucional text-light pt-5 pb-3">
-
-        <div class="container">
-
-            <div class="row gy-5">
-
-
-                <!-- Facultad -->
-                <div class="col-lg-5">
-                    <h4 class="fw-bold mb-4 footer-neon">
-                        Facultad de Derecho y Ciencias Políticas
-                    </h4>
-
-                    <p class="text-secondary">
-
-                        <i class="bi bi-geo-alt-fill me-2 text-success"></i>
-
-                        Av. Juan Pablo II S/N
-                        <br>
-                        Urb. San Andrés
-                        <br>
-                        Trujillo - La Libertad
-
-                    </p>
-
-
-                    <p>
-
-                        <i class="bi bi-envelope-fill me-2 text-success"></i>
-
-                        <a href="mailto:facder@unitru.edu.pe" class="footer-link">
-
-                            facder@unitru.edu.pe
-
-                        </a>
-
-                    </p>
-
-
-
-                    <!-- Redes -->
-
-                    <!-- Redes -->
-                    <div class="mt-4 d-flex gap-3">
-
-                        <a href="#" class="social-icon">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-
-                        <a href="#" class="social-icon">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-
-                        <a href="#" class="social-icon">
-                            <i class="bi bi-youtube"></i>
-                        </a>
-
-                        <a href="#" class="social-icon">
-                            <i class="bi bi-linkedin"></i>
-                        </a>
+                        </label>
 
                     </div>
 
 
+
+
+
+                    <!-- BOTÓN -->
+                    <button type="submit"
+                            class="reclamaciones-submit">
+
+                        <span>
+                            <i class="bi bi-send-fill"></i>
+                            Enviar reclamo
+                        </span>
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </button>
+
+                    <div class="reclamaciones-security">
+
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<style>
+    /* =====================================================
+   MODAL - LIBRO DE RECLAMACIONES
+   ===================================================== */
+/* =====================================================
+   LIBRO DE RECLAMACIONES
+   DISEÑO PREMIUM / MODERNO
+   ===================================================== */
+
+.modal-reclamaciones {
+    max-width: 920px;
+    width: 94%;
+}
+
+
+/* =====================================================
+   CONTENEDOR
+   ===================================================== */
+
+.reclamaciones-modal {
+    border: none;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .25);
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.reclamaciones-header {
+    position: relative;
+
+    padding: 22px 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #263b2b 0%,
+            #304c37 55%,
+            #1f3024 100%
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(212, 175, 55, .35);
+}
+
+
+.reclamaciones-header::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #d4af37,
+        #f1d77a,
+        #d4af37,
+        transparent
+    );
+}
+
+
+/* =====================================================
+   MARCA
+   ===================================================== */
+
+.reclamaciones-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.reclamaciones-logo {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.25),
+        0 0 0 2px rgba(212,175,55,.45);
+}
+
+
+.reclamaciones-logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+.reclamaciones-facultad {
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    letter-spacing: .2px;
+}
+
+
+.reclamaciones-universidad {
+    color: rgba(255,255,255,.68);
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+
+/* =====================================================
+   BOTÓN CERRAR
+   ===================================================== */
+
+.reclamaciones-close {
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.08);
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .25s ease;
+}
+
+
+.reclamaciones-close:hover {
+    background: rgba(212,175,55,.2);
+
+    border-color: #d4af37;
+
+    color: #f1d77a;
+
+    transform: rotate(90deg);
+}
+
+
+/* =====================================================
+   BODY
+   ===================================================== */
+
+.reclamaciones-body {
+    padding: 30px 34px 26px;
+}
+
+
+/* =====================================================
+   TÍTULO
+   ===================================================== */
+
+.reclamaciones-title {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 26px;
+}
+
+
+.reclamaciones-title-icon {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #e8f0e9,
+        #f5f8f5
+    );
+
+    color: #315438;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+
+    border: 1px solid #dfe8e0;
+}
+
+
+.reclamaciones-title h4 {
+    margin: 0;
+
+    color: #26352a;
+
+    font-size: 21px;
+
+    font-weight: 650;
+}
+
+
+.reclamaciones-title p {
+    margin: 4px 0 0;
+
+    color: #7b847e;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   LABELS
+   ===================================================== */
+
+.reclamaciones-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #344139;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.reclamaciones-label i {
+    color: #a88922;
+
+    margin-right: 5px;
+}
+
+
+.reclamaciones-label span {
+    color: #999;
+
+    font-weight: 400;
+}
+
+
+/* =====================================================
+   INPUTS
+   ===================================================== */
+
+.reclamaciones-input {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+}
+
+
+.reclamaciones-input > i:first-child {
+    position: absolute;
+
+    left: 15px;
+
+    color: #89948c;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+.reclamaciones-input input,
+.reclamaciones-input select {
+
+    width: 100%;
+
+    height: 48px;
+
+    border: 1px solid #dfe5e0;
+
+    border-radius: 11px;
+
+    background: #fbfcfb;
+
+    padding: 0 43px;
+
+    color: #374239;
+
+    font-size: 13.5px;
+
+    outline: none;
+
+    transition: .25s ease;
+
+    appearance: none;
+}
+
+
+.reclamaciones-input input::placeholder {
+    color: #a8afaa;
+}
+
+
+.reclamaciones-input input:focus,
+.reclamaciones-input select:focus {
+
+    background: #ffffff;
+
+    border-color: #718b77;
+
+    box-shadow:
+        0 0 0 3px rgba(49,84,56,.08);
+}
+
+
+.input-arrow {
+    position: absolute;
+
+    right: 15px;
+
+    color: #8b948e;
+
+    pointer-events: none;
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   TEXTAREA
+   ===================================================== */
+
+.reclamaciones-textarea {
+    position: relative;
+}
+
+
+.reclamaciones-textarea > i {
+    position: absolute;
+
+    top: 15px;
+    left: 15px;
+
+    color: #89948c;
+}
+
+
+.reclamaciones-textarea textarea {
+
+    width: 100%;
+
+    border: 1px solid #dfe5e0;
+
+    border-radius: 11px;
+
+    background: #fbfcfb;
+
+    padding: 13px 15px 13px 43px;
+
+    resize: vertical;
+
+    min-height: 110px;
+
+    color: #374239;
+
+    font-size: 13.5px;
+
+    outline: none;
+
+    transition: .25s ease;
+}
+
+
+.reclamaciones-textarea textarea:focus {
+
+    background: #ffffff;
+
+    border-color: #718b77;
+
+    box-shadow:
+        0 0 0 3px rgba(49,84,56,.08);
+}
+
+
+/* =====================================================
+   ARCHIVO
+   ===================================================== */
+
+.reclamaciones-file {
+
+    min-height: 70px;
+
+    border: 1px dashed #cbd5cd;
+
+    border-radius: 12px;
+
+    background: #fafcfb;
+
+    padding: 12px 15px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+
+.reclamaciones-file:hover {
+
+    border-color: #a88922;
+
+    background: #fffdf7;
+}
+
+
+.reclamaciones-file > i {
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 10px;
+
+    background: #edf2ee;
+
+    color: #46664d;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+
+.reclamaciones-file div {
+    flex: 1;
+}
+
+
+.reclamaciones-file strong {
+
+    display: block;
+
+    color: #3d4941;
+
+    font-size: 13px;
+}
+
+
+.reclamaciones-file small {
+
+    display: block;
+
+    color: #929b95;
+
+    font-size: 11px;
+
+    margin-top: 2px;
+}
+
+
+.reclamaciones-file input {
+    display: none;
+}
+
+
+.file-button {
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    background: #eef2ef;
+
+    color: #3d5944;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   DECLARACIÓN
+   ===================================================== */
+
+.reclamaciones-declaracion {
+
+    margin-top: 20px;
+
+    padding: 13px 15px;
+
+    border-radius: 11px;
+
+    background: #f7f9f7;
+
+    border: 1px solid #e7ebe7;
+}
+
+
+.reclamaciones-declaracion input {
+    display: none;
+}
+
+
+.reclamaciones-declaracion label {
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+    color: #69736c;
+
+    font-size: 12px;
+}
+
+
+.check-icon {
+
+    width: 20px;
+    height: 20px;
+
+    border: 1px solid #cbd4cd;
+
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: transparent;
+
+    flex-shrink: 0;
+
+    transition: .2s ease;
+}
+
+
+.reclamaciones-declaracion input:checked + label .check-icon {
+
+    background: #315438;
+
+    border-color: #315438;
+
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   BOTÓN ENVIAR
+   ===================================================== */
+
+.reclamaciones-submit {
+
+    width: 100%;
+
+    height: 52px;
+
+    margin-top: 18px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #d4af37,
+        #e7c85c
+    );
+
+    color: #3e2d00;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 19px;
+
+    box-shadow:
+        0 7px 20px rgba(180,145,30,.20);
+
+    transition: .25s ease;
+}
+
+
+.reclamaciones-submit span {
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+.reclamaciones-submit > i {
+
+    font-size: 17px;
+
+    transition: .25s ease;
+}
+
+
+.reclamaciones-submit:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(180,145,30,.30);
+}
+
+
+.reclamaciones-submit:hover > i {
+
+    transform: translateX(4px);
+}
+
+
+/* =====================================================
+   SEGURIDAD
+   ===================================================== */
+
+.reclamaciones-security {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 12px;
+
+    color: #98a09a;
+
+    font-size: 11px;
+}
+
+
+.reclamaciones-security i {
+    color: #62806a;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 767.98px) {
+
+    .modal-reclamaciones {
+
+        width: 96%;
+
+        max-width: none;
+
+        margin: auto;
+    }
+
+
+    .reclamaciones-modal {
+
+        border-radius: 17px;
+    }
+
+
+    .reclamaciones-header {
+
+        padding: 17px 18px;
+    }
+
+
+    .reclamaciones-logo {
+
+        width: 46px;
+        height: 46px;
+    }
+
+
+    .reclamaciones-facultad {
+
+        font-size: 14px;
+    }
+
+
+    .reclamaciones-universidad {
+
+        font-size: 10px;
+    }
+
+
+    .reclamaciones-body {
+
+        padding: 23px 18px 20px;
+    }
+
+
+    .reclamaciones-title h4 {
+
+        font-size: 18px;
+    }
+
+
+    .reclamaciones-title-icon {
+
+        width: 44px;
+        height: 44px;
+
+        font-size: 19px;
+    }
+
+
+    .reclamaciones-file {
+
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+
+    .file-button {
+
+        margin-left: 53px;
+    }
+
+}
+
+
+/* =====================================================
+   DESKTOP GRANDE
+   ===================================================== */
+
+@media (min-width: 1200px) {
+
+    .modal-reclamaciones {
+
+        max-width: 920px;
+    }
+
+}
+
+</style>
+
+
+
+
+
+
+
+<!-- =========================
+     CONTENIDO
+========================== -->
+{% block content %}
+{% endblock %}
+
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+<footer class="footer-institucional text-light pt-5 pb-3">
+
+    <div class="container">
+
+        <div class="row gy-5">
+
+
+            <!-- =========================
+                 FACULTAD
+            ========================== -->
+
+            <div class="col-lg-5">
+
+                <h4 class="fw-bold mb-4 footer-neon">
+                    Facultad de Derecho y Ciencias Políticas
+                </h4>
+
+
+                <p class="text-secondary">
+
+                    <i class="bi bi-geo-alt-fill me-2 text-success"></i>
+
+                    Av. Juan Pablo II S/N
+                    <br>
+                    Urb. San Andrés
+                    <br>
+                    Trujillo - La Libertad
+
+                </p>
+
+
+                <p>
+
+                    <i class="bi bi-envelope-fill me-2 text-success"></i>
+
+                    <a
+                        href="mailto:facder@unitru.edu.pe"
+                        class="footer-link"
+                    >
+                        facder@unitru.edu.pe
+                    </a>
+
+                </p>
+
+
+                <!-- Redes sociales -->
+
+                <div class="mt-4 d-flex gap-3">
+
+                    <a
+                        href="#"
+                        class="social-icon"
+                        aria-label="Facebook"
+                    >
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a
+                        href="#"
+                        class="social-icon"
+                        aria-label="Instagram"
+                    >
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a
+                        href="#"
+                        class="social-icon"
+                        aria-label="YouTube"
+                    >
+                        <i class="bi bi-youtube"></i>
+                    </a>
+
+                    <a
+                        href="#"
+                        class="social-icon"
+                        aria-label="LinkedIn"
+                    >
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+
                 </div>
-
-
-
-
-
-                <!-- Escuelas -->
-                <div class="col-lg-3 footer-col">
-
-                    <h5 class="fw-bold mb-4">
-                        Escuelas Profesionales
-                    </h5>
-
-
-                    <ul class="list-unstyled footer-list">
-
-
-                        <li class="mb-4">
-
-                            <i class="bi bi-chevron-right"></i>
-
-                            <strong>
-                                Escuela de Derecho
-                            </strong>
-
-                            <br>
-
-                            <i class="bi bi-envelope-fill text-success me-2"></i>
-
-                            <a href="mailto:derecho@unitru.edu.pe" class="footer-link">
-
-                                derecho@unitru.edu.pe
-
-                            </a>
-
-                        </li>
-
-
-
-                        <li>
-
-                            <i class="bi bi-chevron-right"></i>
-
-                            <strong>
-                                Escuela de Ciencia Política
-                            </strong>
-
-                            <br>
-
-                            <i class="bi bi-envelope-fill text-success me-2"></i>
-
-                            <a href="mailto:politica@unitru.edu.pe" class="footer-link">
-
-                                politica@unitru.edu.pe
-
-                            </a>
-
-                        </li>
-
-
-                    </ul>
-
-
-                </div>
-
-
-
-
-                <!-- Dependencias -->
-
-                <!-- Dependencias -->
-                <div class="col-lg-4 footer-col">
-
-
-                    <h5 class="fw-bold mb-4">
-                        Dependencias
-                    </h5>
-
-
-
-                    <ul class="list-unstyled footer-list">
-
-
-
-                        <li class="mb-4">
-
-                            <i class="bi bi-chevron-right"></i>
-
-                            <strong>
-                                Centro de Proyección y Extensión Jurídico Político
-                            </strong>
-
-
-                            <br>
-
-
-                            <i class="bi bi-envelope-fill text-success me-2"></i>
-
-
-                            <a href="mailto:consultoriojuridicogratuito@unitru.edu.pe" class="footer-link">
-
-                                consultoriojuridicogratuito@unitru.edu.pe
-
-                            </a>
-
-
-                        </li>
-
-
-
-
-                        <li>
-
-
-                            <i class="bi bi-chevron-right"></i>
-
-
-                            <strong>
-                                Segunda Especialidad de Derecho
-                            </strong>
-
-
-                            <br>
-
-
-                            <i class="bi bi-envelope-fill text-success me-2"></i>
-
-
-                            <a href="mailto:se.derecho@unitru.edu.pe" class="footer-link">
-
-                                se.derecho@unitru.edu.pe
-
-                            </a>
-
-
-                        </li>
-
-
-
-                    </ul>
-
-
-                </div>
-
 
             </div>
 
 
+            <!-- =========================
+                 ESCUELAS
+            ========================== -->
 
-            <hr class="footer-divider my-5">
+            <div class="col-lg-3 footer-col">
 
-
-
-
-
-            <!-- Copyright -->
-
-            <div class="row align-items-center">
-
-
-                <div class="col-md-6 text-center text-md-start">
-
-                    <small class="text-secondary">
-
-                        © 2026 Facultad de Derecho y CC.PP.
-                        <br>
-
-                        Todos los derechos reservados.
-
-                    </small>
+                <h5 class="fw-bold mb-4">
+                    Escuelas Profesionales
+                </h5>
 
 
-                </div>
+                <ul class="list-unstyled footer-list">
 
 
+                    <li>
 
-                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                        <i class="bi bi-chevron-right"></i>
 
-
-                    <small class="text-secondary">
-
-                        Desarrollado por
-
-                        <strong class="text-white">
-                            jjcr
+                        <strong>
+                            Escuela de Derecho
                         </strong>
 
-                    </small>
+                        <br>
+
+                        <i class="bi bi-envelope-fill text-success me-2"></i>
+
+                        <a
+                            href="mailto:derecho@unitru.edu.pe"
+                            class="footer-link"
+                        >
+                            derecho@unitru.edu.pe
+                        </a>
+
+                    </li>
 
 
-                </div>
+                    <li>
 
+                        <i class="bi bi-chevron-right"></i>
+
+                        <strong>
+                            Escuela de Ciencia Política
+                        </strong>
+
+                        <br>
+
+                        <i class="bi bi-envelope-fill text-success me-2"></i>
+
+                        <a
+                            href="mailto:politica@unitru.edu.pe"
+                            class="footer-link"
+                        >
+                            politica@unitru.edu.pe
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+
+            <!-- =========================
+                 DEPENDENCIAS
+            ========================== -->
+
+            <div class="col-lg-4 footer-col">
+
+                <h5 class="fw-bold mb-4">
+                    Dependencias
+                </h5>
+
+
+                <ul class="list-unstyled footer-list">
+
+
+                    <li>
+
+                        <i class="bi bi-chevron-right"></i>
+
+                        <strong>
+                            Centro de Proyección y Extensión Jurídico Político
+                        </strong>
+
+                        <br>
+
+                        <i class="bi bi-envelope-fill text-success me-2"></i>
+
+                        <a
+                            href="mailto:consultoriojuridicogratuito@unitru.edu.pe"
+                            class="footer-link"
+                        >
+                            consultoriojuridicogratuito@unitru.edu.pe
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <i class="bi bi-chevron-right"></i>
+
+                        <strong>
+                            Segunda Especialidad de Derecho
+                        </strong>
+
+                        <br>
+
+                        <i class="bi bi-envelope-fill text-success me-2"></i>
+
+                        <a
+                            href="mailto:se.derecho@unitru.edu.pe"
+                            class="footer-link"
+                        >
+                            se.derecho@unitru.edu.pe
+                        </a>
+
+                    </li>
+
+
+                </ul>
 
             </div>
 
@@ -804,49 +2019,117 @@
         </div>
 
 
-    </footer>
+        <!-- Línea -->
+
+        <hr class="footer-divider my-5">
 
 
+        <!-- =========================
+             COPYRIGHT
+        ========================== -->
+
+        <div class="row align-items-center">
 
 
+            <div class="col-md-6 text-center text-md-start">
+
+                <small class="text-secondary">
+
+                    © 2026 Facultad de Derecho y CC.PP.
+                    <br>
+                    Todos los derechos reservados.
+
+                </small>
+
+            </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+            <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+
+                <small class="text-secondary">
+
+                    Desarrollado por
+
+                    <strong class="text-white">
+                        jjcr
+                    </strong>
+
+                </small>
+
+            </div>
 
 
+        </div>
 
 
+    </div>
 
-    <script>
-        document.querySelectorAll('.navbar .dropdown').forEach(function (dropdown) {
+</footer>
+
+
+<!-- =========================
+     BOOTSTRAP JS
+========================== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- =========================
+     DROPDOWN HOVER
+========================== -->
+<script>
+
+    document
+        .querySelectorAll('.navbar .dropdown')
+        .forEach(function (dropdown) {
 
             let timeout;
 
+            /* =========================
+               SOLO ESCRITORIO
+            ========================== */
+
             dropdown.addEventListener('mouseenter', function () {
+
+                /* No ejecutar hover en móvil/tablet */
+
+                if (window.innerWidth <= 991) {
+                    return;
+                }
 
                 clearTimeout(timeout);
 
-                bootstrap.Dropdown.getOrCreateInstance(
-                    dropdown.querySelector('.dropdown-toggle')
-                ).show();
+                bootstrap.Dropdown
+                    .getOrCreateInstance(
+                        dropdown.querySelector('.dropdown-toggle')
+                    )
+                    .show();
 
             });
 
+
             dropdown.addEventListener('mouseleave', function () {
+
+                /* No ejecutar hover en móvil/tablet */
+
+                if (window.innerWidth <= 991) {
+                    return;
+                }
 
                 timeout = setTimeout(function () {
 
-                    bootstrap.Dropdown.getOrCreateInstance(
-                        dropdown.querySelector('.dropdown-toggle')
-                    ).hide();
+                    bootstrap.Dropdown
+                        .getOrCreateInstance(
+                            dropdown.querySelector('.dropdown-toggle')
+                        )
+                        .hide();
 
-                }, 250); // espera 250 ms antes de cerrar
+                }, 250);
 
             });
 
         });
-    </script>
 
+</script>
 
 
 
