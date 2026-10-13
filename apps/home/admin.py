@@ -7,7 +7,6 @@ from .models import (
     Seccion,
     Bienvenida,
     Caracteristica,
-    Galeria,
 )
 
 
@@ -82,6 +81,10 @@ class HeroAdmin(admin.ModelAdmin):
         "orden",
         "activo"
     )
+
+    def get_fields(self, request, obj=None):
+        # Tanto al añadir como al editar, solo se muestra la imagen.
+        return ["fondo"]
 
 
 
@@ -209,30 +212,70 @@ class CaracteristicaAdmin(admin.ModelAdmin):
 # =========================
 # GALERÍA
 # =========================
-
-@admin.register(Galeria)
-class GaleriaAdmin(admin.ModelAdmin):
-
-    list_display = (
-        "titulo",
-        "categoria",
-        "activo",
-        "orden",
-    )
+# Se eliminó de aquí porque ya existe como su propia sección
+# dedicada ("Galería"), registrada en apps/galeria/admin.py.
+# El modelo Galeria de este archivo (home/models.py) sigue
+# existiendo pero ya no aparece en el admin.
 
 
-    list_filter = (
-        "categoria",
-        "activo",
-    )
+# =========================
+# ORDEN DE SECCIONES EN EL ADMIN
+# =========================
+# Django ordena las secciones alfabéticamente por defecto.
+# Aquí definimos el orden que queremos ver en /admin/.
+ORDEN_APPS = [
+    "home",
+    "autoridades",
+    "documentos",
+    "eventos",
+    "noticias",
+    "galeria",
+    "paginas",
+    "auth",
+]
+
+# Orden de los modelos DENTRO de cada app (por app_label).
+# La clave de cada modelo es su nombre en minúsculas (object_name.lower()).
+ORDEN_MODELOS = {
+    "home": [
+        "navbarlogo",
+        "navbarmenu",
+        "hero",
+        "seccion",
+        "bienvenida",
+        "caracteristica",
+    ],
+}
+
+_original_get_app_list = admin.AdminSite.get_app_list
 
 
-    list_editable = (
-        "activo",
-        "orden",
-    )
+def get_app_list(self, request, app_label=None):
+    app_list = _original_get_app_list(self, request, app_label=app_label)
+
+    def posicion_app(app):
+        try:
+            return ORDEN_APPS.index(app["app_label"])
+        except ValueError:
+            return len(ORDEN_APPS)
+
+    app_list = sorted(app_list, key=posicion_app)
+
+    for app in app_list:
+        orden_modelos = ORDEN_MODELOS.get(app["app_label"])
+        if not orden_modelos:
+            continue
+
+        def posicion_modelo(modelo, orden=orden_modelos):
+            nombre = modelo["object_name"].lower()
+            try:
+                return orden.index(nombre)
+            except ValueError:
+                return len(orden)
+
+        app["models"] = sorted(app["models"], key=posicion_modelo)
+
+    return app_list
 
 
-    ordering = (
-        "orden",
-    )
+admin.AdminSite.get_app_list = get_app_list

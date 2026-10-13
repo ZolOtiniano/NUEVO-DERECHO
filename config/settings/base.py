@@ -5,6 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = "cambia-esto"
 
 INSTALLED_APPS = [
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -12,14 +13,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Apps del proyecto
     "apps.home",
     "apps.paginas",
-
     "apps.autoridades",
     "apps.documentos",
     "apps.noticias",
     "apps.eventos",
     "apps.galeria",
+
+    # Sistema
+    "apps.backup",
 ]
 
 MIDDLEWARE = [
@@ -39,7 +43,11 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+
+        "DIRS": [
+            BASE_DIR / "templates"
+            ],
+
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

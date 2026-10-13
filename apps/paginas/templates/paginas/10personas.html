@@ -1,277 +1,277 @@
-<section id="personas" class="personas-section py-5">
+    <section id="personas" class="personas-section py-5">
 
-    <div class="container">
-
-
-        <!-- Encabezado -->
-        <div class="section-header text-center mb-5">
-
-            {% for encabezado in pagina.encabezados.all %}
-
-                {% if encabezado.seccion == "personas" %}
-
-                    <h2 class="fw-bold">
-                        {{ encabezado.titulo }}
-                    </h2>
-
-                    <p class="text-muted mx-auto" style="max-width:700px;">
-                        {{ encabezado.descripcion }}
-                    </p>
-
-                {% endif %}
-
-            {% endfor %}
-
-        </div>
+        <div class="container">
 
 
+            <!-- Encabezado -->
+            <div class="section-header text-center mb-5">
 
+                {% for encabezado in pagina.encabezados.all %}
 
-        {% regroup personas by categoria as categorias %}
+                    {% if encabezado.seccion == "personas" %}
 
+                        <h2 class="fw-bold">
+                            {{ encabezado.titulo }}
+                        </h2>
 
+                        <p class="text-muted mx-auto" style="max-width:700px;">
+                            {{ encabezado.descripcion }}
+                        </p>
 
-        {% for categoria in categorias %}
+                    {% endif %}
 
-
-        <div class="categoria-personas mb-5">
-
-
-            <div class="titulo-categoria mb-4">
-
-                <span></span>
-
-                <h3>
-                    {{ categoria.grouper|title }}
-                </h3>
+                {% endfor %}
 
             </div>
 
 
 
 
-            <div class="row g-4 justify-content-center">
-
-
-                {% for persona in categoria.list %}
-
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-
-
-                    <div class="persona-card">
-
-
-                        {% if persona.imagen %}
-
-                        <img
-                            src="{{ persona.imagen.url }}"
-                            alt="{{ persona.nombre }}"
-                            class="persona-img"
-                            loading="lazy"
-                        >
-
-                        {% endif %}
+            {% regroup personas by categoria as categorias %}
 
 
 
-                        <h5>
-                            {{ persona.nombre }}
-                        </h5>
+            {% for categoria in categorias %}
+
+
+            <div class="categoria-personas mb-5">
+
+
+                <div class="titulo-categoria mb-4">
+
+                    <span></span>
+
+                    <h3>
+                        {{ categoria.grouper|title }}
+                    </h3>
+
+                </div>
 
 
 
-                        {% if persona.cargo %}
 
-                        <small class="persona-cargo">
-                            {{ persona.cargo }}
-                        </small>
-
-                        {% endif %}
+                <div class="row g-4 justify-content-center">
 
 
+                    {% for persona in categoria.list %}
 
-                        {% if persona.correo %}
 
-                        <p>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
 
-                            <i class="bi bi-envelope-fill"></i>
 
-                            {{ persona.correo }}
+                        <div class="persona-card">
 
-                        </p>
 
-                        {% endif %}
+                            {% if persona.imagen %}
+
+                            <img
+                                src="{{ persona.imagen.url }}"
+                                alt="{{ persona.nombre }}"
+                                class="persona-img"
+                                loading="lazy"
+                            >
+
+                            {% endif %}
+
+
+
+                            <h5>
+                                {{ persona.nombre }}
+                            </h5>
+
+
+
+                            {% if persona.cargo %}
+
+                            <small class="persona-cargo">
+                                {{ persona.cargo }}
+                            </small>
+
+                            {% endif %}
+
+
+
+                            {% if persona.correo %}
+
+                            <p>
+
+                                <i class="bi bi-envelope-fill"></i>
+
+                                {{ persona.correo }}
+
+                            </p>
+
+                            {% endif %}
+
+
+                        </div>
 
 
                     </div>
 
 
+                    {% endfor %}
+
+
                 </div>
-
-
-                {% endfor %}
 
 
             </div>
 
 
+            {% empty %}
+
+
+            <p class="text-center text-muted">
+                No hay personal registrado.
+            </p>
+
+
+            {% endfor %}
+
+
         </div>
 
+    </section>
 
-        {% empty %}
 
+    <style>
 
-        <p class="text-center text-muted">
-            No hay personal registrado.
-        </p>
+        .personas-section{
 
+        background:#fff;
 
-        {% endfor %}
+    }
 
 
-    </div>
 
-</section>
+    .titulo-categoria{
 
+        display:flex;
 
-<style>
+        align-items:center;
 
-    .personas-section{
+        gap:15px;
 
-    background:#fff;
+    }
 
-}
 
 
+    .titulo-categoria span{
 
-.titulo-categoria{
+        width:6px;
 
-    display:flex;
+        height:45px;
 
-    align-items:center;
+        background:#198754;
 
-    gap:15px;
+        border-radius:20px;
 
-}
+    }
 
 
 
-.titulo-categoria span{
+    .titulo-categoria h3{
 
-    width:6px;
+        margin:0;
 
-    height:45px;
+        font-weight:700;
 
-    background:#198754;
+    }
 
-    border-radius:20px;
 
-}
 
+    .persona-card{
 
+        background:white;
 
-.titulo-categoria h3{
+        padding:35px 25px;
 
-    margin:0;
+        text-align:center;
 
-    font-weight:700;
+        border-radius:25px;
 
-}
+        height:100%;
 
+        box-shadow:
+        0 10px 30px rgba(0,0,0,.07);
 
+        transition:.3s ease;
 
-.persona-card{
+    }
 
-    background:white;
 
-    padding:35px 25px;
 
-    text-align:center;
+    .persona-card:hover{
 
-    border-radius:25px;
+        transform:translateY(-8px);
 
-    height:100%;
+        box-shadow:
+        0 20px 45px rgba(0,0,0,.13);
 
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.07);
+    }
 
-    transition:.3s ease;
 
-}
 
+    .persona-img{
 
+        width:160px;
 
-.persona-card:hover{
+        height:160px;
 
-    transform:translateY(-8px);
+        object-fit:cover;
 
-    box-shadow:
-    0 20px 45px rgba(0,0,0,.13);
+        border-radius:50%;
 
-}
+        border:6px solid #198754;
 
+    }
 
 
-.persona-img{
 
-    width:160px;
+    .persona-card h5{
 
-    height:160px;
+        margin-top:25px;
 
-    object-fit:cover;
+        font-weight:700;
 
-    border-radius:50%;
+    }
 
-    border:6px solid #198754;
 
-}
 
+    .persona-cargo{
 
+        display:block;
 
-.persona-card h5{
+        color:#198754;
 
-    margin-top:25px;
+        font-weight:600;
 
-    font-weight:700;
+        margin-top:8px;
 
-}
+    }
 
 
 
-.persona-cargo{
+    .persona-card p{
 
-    display:block;
+        margin-top:15px;
 
-    color:#198754;
+        color:#6c757d;
 
-    font-weight:600;
+        font-size:.9rem;
 
-    margin-top:8px;
+        word-break:break-word;
 
-}
+    }
 
 
 
-.persona-card p{
+    .persona-card p i{
 
-    margin-top:15px;
+        color:#198754;
 
-    color:#6c757d;
+        margin-right:8px;
 
-    font-size:.9rem;
-
-    word-break:break-word;
-
-}
-
-
-
-.persona-card p i{
-
-    color:#198754;
-
-    margin-right:8px;
-
-}
-</style>
+    }
+    </style>

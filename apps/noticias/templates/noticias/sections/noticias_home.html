@@ -236,21 +236,40 @@
         background: #0d6efd;
 
     }
+
+
+
+    /* Cuando solamente hay una noticia */
+.noticiasSwiper .swiper-wrapper {
+    align-items: stretch;
+}
+
+.noticiasSwiper .swiper-slide {
+    height: auto;
+}
+
+/* Una sola noticia */
+.noticiasSwiper .swiper-wrapper:has(.swiper-slide:only-child) {
+    justify-content: center;
+}
+
+.noticiasSwiper .swiper-slide:only-child {
+    max-width: 420px;
+}
 </style>
 
 
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+
+
 <script>
-
-    new Swiper(".noticiasSwiper", {
-
+    const noticiasSwiper = new Swiper(".noticiasSwiper", {
         slidesPerView: 1,
-
         spaceBetween: 30,
 
-        loop: true,
+        loop: false,
 
         autoplay: {
             delay: 4000,
@@ -268,7 +287,6 @@
         },
 
         breakpoints: {
-
             768: {
                 slidesPerView: 2
             },
@@ -276,9 +294,11 @@
             992: {
                 slidesPerView: 3
             }
-
         }
-
     });
 
+    // Si solamente existe una noticia, centrarla
+    if (document.querySelectorAll(".noticiasSwiper .swiper-slide").length === 1) {
+        document.querySelector(".noticiasSwiper .swiper-wrapper").style.justifyContent = "center";
+    }
 </script>

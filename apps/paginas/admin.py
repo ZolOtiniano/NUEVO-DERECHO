@@ -23,18 +23,17 @@ from .models import (
 # ==========================
 # INLINES (Encabezados)
 # ==========================
-
 class EncabezadoSeccionInline(admin.TabularInline):
-
     model = EncabezadoSeccion
-
     extra = 1
+    
+
+
 
 
 # ==========================
 # INLINES (OneToOne)
 # ==========================
-
 class HeroInline(admin.StackedInline):
     model = Hero
     extra = 0
@@ -45,11 +44,6 @@ class HistoriaInline(admin.StackedInline):
     model = Historia
     extra = 0
     max_num = 1
-
-
-class ObjetivoInline(admin.TabularInline):
-    model = Objetivo
-    extra = 1
 
 
 class MisionInline(admin.StackedInline):
@@ -64,25 +58,31 @@ class VisionInline(admin.StackedInline):
     max_num = 1
 
 
-class ValorInline(admin.TabularInline):
-    model = Valor
-    extra = 1
-
-
-class PerfilEgresadoInline(admin.StackedInline):
-    model = PerfilEgresado
-    extra = 1
-
-
 class ContactoInline(admin.StackedInline):
     model = Contacto
     extra = 0
     max_num = 1
 
 
+
+
 # ==========================
 # INLINES (OneToMany)
 # ==========================
+class ObjetivoInline(admin.TabularInline):
+    model = Objetivo
+    extra = 1
+
+
+class ValorInline(admin.TabularInline):
+    model = Valor
+    extra = 1
+
+
+class PerfilEgresadoInline(admin.TabularInline):
+    model = PerfilEgresado
+    extra = 1
+
 
 class AutoridadInline(admin.TabularInline):
     model = Autoridad
@@ -114,10 +114,12 @@ class NoticiaInline(admin.TabularInline):
     extra = 0
 
 
+
+
+
 # ==========================
 # PAGINA
 # ==========================
-
 @admin.register(Pagina)
 class PaginaAdmin(admin.ModelAdmin):
 
@@ -190,6 +192,14 @@ class PaginaAdmin(admin.ModelAdmin):
 
 
     class Media:
+
+        css = {
+            "all": (
+                "admin/css/custom_admin.css",
+            )
+        }
+
         js = (
             "admin/js/collapsible_fieldsets.js",
+            "admin/js/inline_status.js",
         )

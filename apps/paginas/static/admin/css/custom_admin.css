@@ -1,0 +1,57 @@
+/* ============================= */
+/* ESTILO BASE DE TODOS LOS INLINE */
+/* ============================= */
+
+.inline-related {
+
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    overflow: hidden;
+
+}
+
+
+
+
+
+/* ============================= */
+/* INLINE CON DATOS REALES */
+/* ============================= */
+
+.inline-completo {
+
+    background: #e9f7ef !important;
+
+    border-left: 6px solid #198754 !important;
+
+}
+
+
+/* Cabecera verde cuando tiene datos */
+
+.inline-completo h3 {
+
+    background: #198754 !important;
+
+    color: white !important;
+
+}
+
+
+/* ============================= */
+/* TABULAR INLINE */
+/* ============================= */
+
+.inline-related table {
+
+    border-collapse: collapse;
+
+}
+
+
+.inline-completo table {
+
+    background: #f4fff7;
+
+}

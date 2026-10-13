@@ -488,14 +488,14 @@
             target="_blank"
             rel="noopener noreferrer">
                 <i class="bi bi-file-earmark-text"></i>
-                Buscador De Actas y Resoluciones
+                BUSCADOR DE ACTAS Y RESOLUCIONES
             </a>
 
             <a href="https://portaldocente.unitru.edu.pe/"
             target="_blank"
             rel="noopener noreferrer">
                 <i class="bi bi-person-badge"></i>
-                Portal Docente
+                PORTAL DOCENTE
             </a>
 
         </div>
@@ -619,11 +619,15 @@
 
                         <a
                             class="nav-link fw-semibold px-3 btn-reclamaciones"
-                            href="#"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modalReclamaciones"
+                            href="javascript:void(0);"
+                            title="Próximamente"
                         >
+                            <i class="bi bi-journal-text me-1"></i>
                             {{ item.nombre }}
+
+                            <span class="proximamente-badge">
+                                Próximamente
+                            </span>
                         </a>
 
                     {% else %}
@@ -659,12 +663,52 @@
     transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
+
+
+.navbar-nav .nav-link.btn-reclamaciones:hover {
+    background-color: #f0c94a !important;
+    color: #3d2600 !important;
+    transform: translateY(-1px);
+}
+
+.btn-reclamaciones {
+    background-color: #d4af37;
+    color: #4a2f00 !important;
+    border-radius: 6px;
+    padding: 8px 14px !important;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.proximamente-badge {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 2px 6px;
+    border-radius: 5px;
+
+    background: #263b2b;
+    color: #f1d77a;
+
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+
+    vertical-align: middle;
+}
+
 .navbar-nav .nav-link.btn-reclamaciones:hover {
     background-color: #f0c94a !important;
     color: #3d2600 !important;
     transform: translateY(-1px);
 }
 </style>
+
+
 
 
 
@@ -1786,6 +1830,10 @@
 }
 
 </style>
+
+
+
+
 
 
 

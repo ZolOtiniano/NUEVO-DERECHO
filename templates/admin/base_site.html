@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+{{ title }} | Administración
+{% endblock %}
+
+
+{% block branding %}
+
+<div id="site-name" style="
+    display: flex;
+    align-items: center;
+    gap: 18px;
+">
+
+    <a href="{% url 'admin:index' %}" class="text-center">
+        Facultad de Derecho y CC.PP. - UNT
+    </a>
+
+    {% if user.is_superuser %}
+
+        <a
+            href="{% url 'backup:backup_center' %}"
+            style="
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+                padding: 7px 14px;
+                border-radius: 7px;
+                background: #198754;
+                color: #ffffff !important;
+                text-decoration: none !important;
+                font-size: 13px;
+                font-weight: 600;
+                line-height: 1.2;
+                transition: all .2s ease;
+            "
+        >
+            🛡️ Centro de Backup
+        </a>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -92,7 +92,8 @@ class Hero(models.Model):
     )
 
     titulo = models.CharField(
-        max_length=200
+        max_length=200,
+        blank=True
     )
 
     subtitulo = models.TextField(

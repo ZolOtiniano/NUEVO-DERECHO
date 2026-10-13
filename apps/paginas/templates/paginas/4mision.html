@@ -10,19 +10,28 @@
 
                 {% if encabezado.seccion == "mision" %}
 
+
+                    <span class="section-badge">
+                        Identidad Institucional
+                    </span>
+
+
                     <h2 class="fw-bold">
                         {{ encabezado.titulo }}
                     </h2>
 
+
                     <p class="text-muted col-lg-7 mx-auto">
                         {{ encabezado.descripcion }}
                     </p>
+
 
                 {% endif %}
 
             {% endfor %}
 
         </div>
+
 
 
 
@@ -42,9 +51,14 @@
 
 
 
-                    <p>
-                        {{ pagina.mision.descripcion }}
-                    </p>
+                    <div class="mision-texto">
+
+                        {{ pagina.mision.descripcion|linebreaks }}
+
+                    </div>
+
+
+                    <div class="mision-linea"></div>
 
 
                 </div>
@@ -52,19 +66,47 @@
 
             </div>
 
+
         </div>
 
 
     </div>
 
+
 </section>
 
 <style>
     .mision-section{
-    background:#ffffff;
+
+    background:#fff;
+
 }
 
 
+
+/* etiqueta */
+
+.section-badge{
+
+    display:inline-block;
+
+    background:#198754;
+
+    color:white;
+
+    padding:6px 18px;
+
+    border-radius:30px;
+
+    font-size:.85rem;
+
+    margin-bottom:15px;
+
+}
+
+
+
+/* caja */
 
 .mision-box{
 
@@ -72,14 +114,15 @@
 
     background:#f8f9fa;
 
-    padding:70px 60px 50px;
+    padding:80px 60px 50px;
 
     text-align:center;
 
     border-radius:30px;
 
     box-shadow:
-    0 15px 40px rgba(0,0,0,.08);
+
+    0 20px 45px rgba(0,0,0,.10);
 
     border-top:5px solid #198754;
 
@@ -87,11 +130,13 @@
 
 
 
+/* icono */
+
 .icon-box{
 
-    width:100px;
+    width:110px;
 
-    height:100px;
+    height:110px;
 
     background:#198754;
 
@@ -105,10 +150,20 @@
 
     justify-content:center;
 
-    margin:-120px auto 35px;
+    margin:-135px auto 35px;
 
     box-shadow:
-    0 10px 25px rgba(25,135,84,.35);
+
+    0 15px 35px rgba(25,135,84,.35);
+
+    transition:.3s;
+
+}
+
+
+.icon-box:hover{
+
+    transform:translateY(-8px);
 
 }
 
@@ -116,13 +171,15 @@
 
 .icon-box i{
 
-    font-size:3rem;
+    font-size:3.2rem;
 
 }
 
 
 
-.mision-box p{
+/* texto */
+
+.mision-texto{
 
     color:#555;
 
@@ -130,7 +187,25 @@
 
     line-height:2;
 
-    margin:0;
+    text-align:justify;
+
+}
+
+
+
+/* línea */
+
+.mision-linea{
+
+    width:100px;
+
+    height:4px;
+
+    background:#198754;
+
+    margin:35px auto 0;
+
+    border-radius:20px;
 
 }
 
@@ -138,14 +213,33 @@
 
 @media(max-width:768px){
 
+
     .mision-box{
 
-        padding:60px 25px 35px;
+        padding:70px 25px 35px;
 
     }
 
 
-    .mision-box p{
+    .icon-box{
+
+        width:90px;
+
+        height:90px;
+
+        margin-top:-120px;
+
+    }
+
+
+    .icon-box i{
+
+        font-size:2.5rem;
+
+    }
+
+
+    .mision-texto{
 
         font-size:1rem;
 
